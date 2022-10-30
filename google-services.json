@@ -1,0 +1,47 @@
+{
+  "project_info": {
+    "project_number": "342907767103",
+    "project_id": "rocketpunch-pretask",
+    "storage_bucket": "rocketpunch-pretask.appspot.com"
+  },
+  "client": [
+    {
+      "client_info": {
+        "mobilesdk_app_id": "1:342907767103:android:9383942a4c4b27edbe2b8a",
+        "android_client_info": {
+          "package_name": "kr.dagger.rocketpunchpretask"
+        }
+      },
+      "oauth_client": [
+        {
+          "client_id": "342907767103-8jujforiualb7969ms3it1p5d0cl7oqq.apps.googleusercontent.com",
+          "client_type": 1,
+          "android_info": {
+            "package_name": "kr.dagger.rocketpunchpretask",
+            "certificate_hash": "248381dcd253af400f3e795b9b341b52ecbbcec7"
+          }
+        },
+        {
+          "client_id": "342907767103-u73o55rdt3msdof65fes9b4sor1fsu6n.apps.googleusercontent.com",
+          "client_type": 3
+        }
+      ],
+      "api_key": [
+        {
+          "current_key": "AIzaSyCHu7Qz27cVJXPZE1MZClNsU9lKIbRzIa4"
+        }
+      ],
+      "services": {
+        "appinvite_service": {
+          "other_platform_oauth_client": [
+            {
+              "client_id": "342907767103-u73o55rdt3msdof65fes9b4sor1fsu6n.apps.googleusercontent.com",
+              "client_type": 3
+            }
+          ]
+        }
+      }
+    }
+  ],
+  "configuration_version": "1"
+}
