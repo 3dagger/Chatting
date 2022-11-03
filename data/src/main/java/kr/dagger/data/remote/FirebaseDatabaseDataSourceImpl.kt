@@ -1,13 +1,14 @@
 package kr.dagger.data.remote
 
-import android.util.Log
 import com.google.firebase.database.FirebaseDatabase
 import kotlinx.coroutines.flow.Flow
 import kotlinx.coroutines.flow.flow
 import kotlinx.coroutines.tasks.await
-import kr.dagger.data.entitiy.UserEntity
+import kr.dagger.data.entity.ChatEntity
+import kr.dagger.data.entity.UserEntity
+import kr.dagger.data.entity.UserInfoEntity
 import kr.dagger.domain.model.Response
-import kr.dagger.domain.model.User
+import kr.dagger.domain.model.UserInfo
 import javax.inject.Inject
 
 class FirebaseDatabaseDataSourceImpl @Inject constructor(
@@ -48,7 +49,46 @@ class FirebaseDatabaseDataSourceImpl @Inject constructor(
 		}
 	}
 
+	override suspend fun loadChatList(): Flow<Response<List<ChatEntity>>> = flow {
+		try {
+			emit(Response.Loading)
+			database.reference.child("chats").get().await().children.mapNotNull { doc ->
+				doc.getValue(ChatEntity::class.java)
+			}.run {
+				emit(Response.Success(this))
+			}
+		} catch (e: Exception) {
+			emit(Response.Error(e.message ?: "요청에 실패하였습니다."))
+		}
+	}
+
+	override suspend fun loadChat(): Flow<Response<ChatEntity>> = flow {
+		try {
+			emit(Response.Loading)
+			database.reference.child("chats").get().await().getValue(ChatEntity::class.java)!!.run {
+				emit(Response.Success(this))
+			}
+		} catch (e: Exception) {
+			emit(Response.Error(e.message ?: "요청에 실패하였습니다."))
+		}
+	}
+
+	override suspend fun loadUserInfo(userId: String): Flow<Response<UserInfoEntity>> = flow {
+		try {
+			emit(Response.Loading)
+			database.reference.child("users/$userId/info").get().await().getValue(UserInfoEntity::class.java)!!.run {
+				emit(Response.Success(this))
+			}
+		} catch (e: Exception) {
+			emit(Response.Error(e.message ?: "요청에 실패하였습니다."))
+		}
+	}
+
 	override fun updateNewUser(user: UserEntity) {
-		database.reference.child("users/${user.info.displayName}").setValue(user)
+		database.reference.child("users/${user.info.id}").setValue(user)
+	}
+
+	override fun updateNewChat(chat: ChatEntity) {
+		database.reference.child("chats/${chat.info.id}").setValue(chat)
 	}
 }

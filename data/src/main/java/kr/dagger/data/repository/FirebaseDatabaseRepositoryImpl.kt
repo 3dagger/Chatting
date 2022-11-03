@@ -1,20 +1,15 @@
 package kr.dagger.data.repository
 
 import android.util.Log
-import com.google.firebase.database.FirebaseDatabase
 import kotlinx.coroutines.flow.Flow
-import kotlinx.coroutines.flow.flow
 import kotlinx.coroutines.flow.transform
-import kotlinx.coroutines.tasks.await
-import kr.dagger.data.entitiy.UserEntity
-import kr.dagger.data.entitiy.UserInfoEntity
-import kr.dagger.data.mapper.UserDtoMapper
-import kr.dagger.data.mapper.UserModelToUserEntityMapper
+import kr.dagger.data.mapper.*
 import kr.dagger.data.remote.FirebaseDatabaseDataSource
+import kr.dagger.domain.model.Chat
 import kr.dagger.domain.model.Response
 import kr.dagger.domain.model.User
+import kr.dagger.domain.model.UserInfo
 import kr.dagger.domain.repository.FirebaseDatabaseRepository
-import javax.inject.Inject
 
 class FirebaseDatabaseRepositoryImpl(
 	private val firebaseDatabaseDataSource: FirebaseDatabaseDataSource
@@ -53,34 +48,59 @@ class FirebaseDatabaseRepositoryImpl(
 		}
 	}
 
+	override suspend fun loadChatList(): Flow<Response<List<Chat>>> {
+		return firebaseDatabaseDataSource.loadChatList().transform { response ->
+			when (response) {
+				is Response.Loading -> {
+					emit(Response.Loading)
+				}
+				is Response.Error -> {
+					emit(Response.Error(response.errorMessage))
+				}
+				is Response.Success -> {
+					emit(Response.Success(data = response.data.map { ChatDtoMapper().convert(it) }))
+				}
+			}
+		}
+	}
+
+	override suspend fun loadChat(): Flow<Response<Chat>> {
+		return firebaseDatabaseDataSource.loadChat().transform { response ->
+			when (response) {
+				is Response.Loading -> {
+					emit(Response.Loading)
+				}
+				is Response.Error -> {
+					emit(Response.Error(response.errorMessage))
+				}
+				is Response.Success -> {
+					emit(Response.Success(data = ChatDtoMapper().convert(response.data)))
+				}
+			}
+		}
+	}
+
+	override suspend fun loadUserInfo(userId: String): Flow<Response<UserInfo>> {
+		return firebaseDatabaseDataSource.loadUserInfo(userId).transform { response ->
+			when (response) {
+				is Response.Loading -> {
+					emit(Response.Loading)
+				}
+				is Response.Error -> {
+					emit(Response.Error(response.errorMessage))
+				}
+				is Response.Success -> {
+					emit(Response.Success(data = UserInfoDtoMapper().convert(response.data)))
+				}
+			}
+		}
+	}
+
+	override fun updateNewChat(chat: Chat) {
+		firebaseDatabaseDataSource.updateNewChat(ChatModelToChatEntityMapper().convert(chat))
+	}
+
 	override fun updateNewUser(user: User) {
 		firebaseDatabaseDataSource.updateNewUser(UserModelToUserEntityMapper().convert(user))
 	}
-
-
 }
-//class FirebaseDatabaseRepositoryImpl @Inject constructor(
-//	private val database: FirebaseDatabase
-//) : FirebaseDatabaseRepository {
-//
-//	override suspend fun loadUsers() = flow {
-//		try{
-//			emit(Response.Loading)
-//			database.reference.child("users").get().await().children.mapNotNull { doc ->
-//				doc.getValue(User::class.java)
-//			}.run {
-//				Log.d("leeam", "real :: ${this}")
-//				emit(Response.Success(this))
-//			}
-//		} catch (e: Exception) {
-//			emit(Response.Error(e.message ?: "요청에 실패하였습니다."))
-//		}
-//
-//	}
-//
-//
-//	override fun updateNewUser(user: User) {
-//		database.reference.child("users/${user.info.id}").setValue(user)
-//	}
-//
-//}

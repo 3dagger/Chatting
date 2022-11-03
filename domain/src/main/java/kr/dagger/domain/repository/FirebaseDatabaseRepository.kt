@@ -1,8 +1,10 @@
 package kr.dagger.domain.repository
 
 import kotlinx.coroutines.flow.Flow
+import kr.dagger.domain.model.Chat
 import kr.dagger.domain.model.Response
 import kr.dagger.domain.model.User
+import kr.dagger.domain.model.UserInfo
 
 interface FirebaseDatabaseRepository {
 
@@ -10,5 +12,13 @@ interface FirebaseDatabaseRepository {
 
 	suspend fun loadUsers(): Flow<Response<List<User>>>
 
+	suspend fun loadChatList(): Flow<Response<List<Chat>>>
+
+	suspend fun loadChat(): Flow<Response<Chat>>
+
+	suspend fun loadUserInfo(userId: String): Flow<Response<UserInfo>>
+
 	fun updateNewUser(user: User)
+
+	fun updateNewChat(chat: Chat)
 }
