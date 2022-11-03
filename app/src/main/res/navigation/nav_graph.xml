@@ -24,6 +24,10 @@
         <action
             android:id="@+id/action_navigation_messageFragment_to_createMessageFragment"
             app:destination="@id/CreateMessageFragment" />
+
+        <action
+            android:id="@+id/action_navigation_createMessageFragment_to_chatFragment"
+            app:destination="@id/ChatFragment" />
     </fragment>
 
     <fragment
@@ -35,6 +39,25 @@
             android:id="@+id/action_navigation_createMessageFragment_to_messageFragment"
             app:destination="@id/MessageFragment" />
 
+        <action
+            android:id="@+id/action_navigation_createMessageFragment_to_chatFragment"
+            app:destination="@id/ChatFragment" />
+
+    </fragment>
+
+    <fragment
+        android:id="@+id/ChatFragment"
+        android:name="kr.dagger.rocketpunchpretask.presentation.ui.message.chat.ChatFragment"
+        tools:layout="@layout/fragment_chat">
+
+        <action
+            android:id="@+id/action_navigation_chatFragment_to_messageFragment"
+            app:destination="@id/MessageFragment" />
+
+        <action
+            android:id="@+id/action_navigation_chatFragment_to_createMessageFragment"
+            app:destination="@id/CreateMessageFragment" />
+
     </fragment>
 
     <fragment
@@ -43,9 +66,6 @@
         android:label="@string/my_page_fragment_label"
         tools:layout="@layout/fragment_mypage">
 
-        <!--        <action-->
-        <!--            android:id="@+id/action_SecondFragment_to_FirstFragment"-->
-        <!--            app:destination="@id/FirstFragment" />-->
     </fragment>
 
     <fragment

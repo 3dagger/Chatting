@@ -8,10 +8,13 @@
         <entry key="app/src/main/res/drawable/ic_outline_home.xml" value="0.186" />
         <entry key="app/src/main/res/drawable/ic_rocket_punch_logo_background.xml" value="0.2415" />
         <entry key="app/src/main/res/drawable/login_button_round_background.xml" value="0.2415" />
+        <entry key="app/src/main/res/drawable/received_round_background.xml" value="0.2815" />
+        <entry key="app/src/main/res/drawable/sent_round_background.xml" value="0.2815" />
         <entry key="app/src/main/res/layout/activity_login.xml" value="0.2703125" />
         <entry key="app/src/main/res/layout/activity_main.xml" value="0.5" />
         <entry key="app/src/main/res/layout/activity_splash.xml" value="0.2703125" />
         <entry key="app/src/main/res/layout/content_main.xml" value="0.2755208333333333" />
+        <entry key="app/src/main/res/layout/fragment_chat.xml" value="0.37604166666666666" />
         <entry key="app/src/main/res/layout/fragment_create_message.xml" value="0.42604166666666665" />
         <entry key="app/src/main/res/layout/fragment_first.xml" value="0.275" />
         <entry key="app/src/main/res/layout/fragment_home.xml" value="0.22" />
@@ -22,6 +25,8 @@
         <entry key="app/src/main/res/layout/fragment_second.xml" value="0.49583333333333335" />
         <entry key="app/src/main/res/layout/include_title_bar.xml" value="0.4029017857142857" />
         <entry key="app/src/main/res/layout/item_message_list.xml" value="0.425" />
+        <entry key="app/src/main/res/layout/item_message_received.xml" value="0.37604166666666666" />
+        <entry key="app/src/main/res/layout/item_message_sent.xml" value="0.375" />
         <entry key="app/src/main/res/layout/item_search_user_list.xml" value="0.42604166666666665" />
         <entry key="app/src/main/res/menu/menu_main.xml" value="0.275" />
         <entry key="app/src/main/res/mipmap-anydpi-v26/ic_launcher.xml" value="0.2415" />
