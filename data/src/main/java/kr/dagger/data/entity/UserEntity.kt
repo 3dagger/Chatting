@@ -1,7 +1,6 @@
-package kr.dagger.data.entitiy
+package kr.dagger.data.entity
 
 import com.google.firebase.database.PropertyName
-import kr.dagger.domain.model.UserInfo
 
 data class UserEntity (
 	@get:PropertyName("info") @set:PropertyName("info") var info: UserInfoEntity = UserInfoEntity()

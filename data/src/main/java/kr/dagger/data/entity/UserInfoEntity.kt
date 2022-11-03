@@ -1,4 +1,4 @@
-package kr.dagger.data.entitiy
+package kr.dagger.data.entity
 
 import com.google.firebase.database.PropertyName
 
