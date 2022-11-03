@@ -1,6 +1,6 @@
 package kr.dagger.data.mapper
 
-import kr.dagger.data.entitiy.UserEntity
+import kr.dagger.data.entity.UserEntity
 import kr.dagger.domain.mapper.Mapper
 import kr.dagger.domain.model.User
 import kr.dagger.domain.model.UserInfo
