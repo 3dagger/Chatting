@@ -1,3 +1,15 @@
 <resources>
     <dimen name="fab_margin">16dp</dimen>
+
+    <dimen name="splash_logo_width">100dp</dimen>
+    <dimen name="splash_logo_height">100dp</dimen>
+
+    <dimen name="login_logo_height">150dp</dimen>
+    <dimen name="login_logo_margin_start">50dp</dimen>
+    <dimen name="login_logo_marin_end">50dp</dimen>
+    <dimen name="login_button_text_size">20sp</dimen>
+
+    <dimen name="round_corner_border">1dp</dimen>
+    <dimen name="round_corner_radius">10dp</dimen>
+    <dimen name="round_corner_padding">1dp</dimen>
 </resources>
