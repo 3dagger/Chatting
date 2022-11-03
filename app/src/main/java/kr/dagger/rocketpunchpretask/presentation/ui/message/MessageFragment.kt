@@ -14,6 +14,9 @@ import dagger.hilt.android.AndroidEntryPoint
 import dagger.hilt.android.HiltAndroidApp
 import kotlinx.coroutines.coroutineScope
 import kotlinx.coroutines.tasks.await
+import kr.dagger.domain.model.ChatWithUserInfo
+import kr.dagger.domain.model.Response
+import kr.dagger.domain.model.UserInfo
 import kr.dagger.rocketpunchpretask.R
 import kr.dagger.rocketpunchpretask.base.BaseFragment
 import kr.dagger.rocketpunchpretask.databinding.FragmentMessageBinding
@@ -25,6 +28,8 @@ class MessageFragment : BaseFragment<FragmentMessageBinding>(R.layout.fragment_m
 
 	private val viewModel: MessageViewModel by viewModels()
 
+	private lateinit var listAdapter: MessageListAdapter
+
 	override fun onViewCreated(view: View, savedInstanceState: Bundle?) {
 		super.onViewCreated(view, savedInstanceState)
 
@@ -33,6 +38,30 @@ class MessageFragment : BaseFragment<FragmentMessageBinding>(R.layout.fragment_m
 			fm = this@MessageFragment
 			clickListener = this@MessageFragment
 		}
+
+		viewModel.loadChat().observe(viewLifecycleOwner) {
+			when (it) {
+				is Response.Loading -> {
+					binding.progressBar.visibility = View.VISIBLE
+				}
+				is Response.Success -> {
+					binding.progressBar.visibility = View.INVISIBLE
+					Log.d("leeam", "result :: ${it.data}")
+
+				}
+				is Response.Error -> {
+					binding.progressBar.visibility = View.INVISIBLE
+				}
+			}
+		}
+
+
+		setUpListAdapter()
+	}
+
+	private fun setUpListAdapter() {
+		listAdapter = MessageListAdapter()
+		binding.recyclerView.adapter = listAdapter
 	}
 
 	override fun onRightClicked() {
