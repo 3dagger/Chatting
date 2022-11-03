@@ -40,6 +40,7 @@ class LoginActivity : BaseActivity<ActivityLoginBinding>(R.layout.activity_login
 				val result = Auth.GoogleSignInApi.getSignInResultFromIntent(it.data!!)
 				result?.signInAccount?.idToken?.let { idToken ->
 					signInWithGoogle(idToken)
+					viewModel.saveMyUserId(result.signInAccount?.id ?: "")
 					viewModel.updateNewUser(
 						user = User(
 							info = UserInfo(
