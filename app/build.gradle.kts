@@ -46,6 +46,9 @@ android {
 }
 
 dependencies {
+    implementation(project(ProjectConstants.Data))
+    implementation(project(ProjectConstants.Domain))
+
     implementation(Dependencies.AndroidSupport.CoreKtx)
     implementation(Dependencies.AndroidSupport.AppCompat)
     implementation(Dependencies.AndroidSupport.Material)
@@ -77,6 +80,8 @@ dependencies {
     kapt(Dependencies.Glide.Compiler)
 
 
+    // DataStore
+    implementation("androidx.datastore:datastore-preferences:1.0.0")
     // Google
     implementation("com.google.android.gms:play-services-auth:20.3.0")
 

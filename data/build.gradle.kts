@@ -46,4 +46,15 @@ dependencies {
 	implementation(Dependencies.Retrofit.GsonConverter)
 	implementation(Dependencies.Hilt.Android)
 	kapt(Dependencies.Hilt.Compiler)
+
+	// DataStore
+	implementation("androidx.datastore:datastore-preferences:1.0.0")
+	// Google
+	implementation("com.google.android.gms:play-services-auth:20.3.0")
+
+	// Firebase
+	implementation(platform("com.google.firebase:firebase-bom:31.0.2"))
+	implementation("com.google.firebase:firebase-database-ktx")
+	implementation("com.google.firebase:firebase-storage-ktx")
+	implementation("com.google.firebase:firebase-auth-ktx")
 }
