@@ -9,11 +9,16 @@
         <variable
             name="user"
             type="kr.dagger.domain.model.User" />
+
+        <variable
+            name="listener"
+            type="kr.dagger.rocketpunchpretask.presentation.ui.message.create.SearchUserItemClickListener" />
     </data>
 
     <androidx.constraintlayout.widget.ConstraintLayout
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
+        android:onClick="@{() -> listener.itemClicked(user.info.id)}"
         android:layout_marginTop="20dp"
         android:layout_marginStart="15dp"
         android:layout_marginEnd="15dp">
