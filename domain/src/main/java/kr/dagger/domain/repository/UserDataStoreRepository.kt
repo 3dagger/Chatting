@@ -6,5 +6,9 @@ interface UserDataStoreRepository {
 
 	fun getLoginUser(): Flow<Boolean>
 
+	fun getMyUserId(): Flow<String>
+
 	suspend fun saveIsLoginUser(isLoginUser: Boolean)
+
+	suspend fun saveMyUserId(id: String)
 }

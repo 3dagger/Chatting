@@ -12,7 +12,15 @@ class UserDataStoreRepositoryImpl(
 		return dataStore.getLoginUser()
 	}
 
+	override fun getMyUserId(): Flow<String> {
+		return dataStore.getMyUserId()
+	}
+
 	override suspend fun saveIsLoginUser(isLoginUser: Boolean) {
 		dataStore.setIsLogin(isLoginUser)
+	}
+
+	override suspend fun saveMyUserId(id: String) {
+		dataStore.setMyUserId(id)
 	}
 }
