@@ -32,7 +32,6 @@ class CreateMessageViewModel @Inject constructor(
 	init {
 		viewModelScope.launch {
 			getMyUserIdUseCase.invoke().collect {
-				Log.d("leeam","myuserId :: $it")
 				_myUserId.value = it
 			}
 		}

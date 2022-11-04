@@ -75,9 +75,6 @@ class LoginActivity : BaseActivity<ActivityLoginBinding>(R.layout.activity_login
 		}
 	}
 
-	override fun subscribeObservers() {
-	}
-
 	fun signIn() {
 		signIn.launch(signInIntent)
 	}

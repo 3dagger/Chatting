@@ -19,8 +19,8 @@
         <type value="RUNNING_DEVICE_TARGET" />
         <deviceKey>
           <Key>
-            <type value="SERIAL_NUMBER" />
-            <value value="R3CM40HV52M" />
+            <type value="VIRTUAL_DEVICE_PATH" />
+            <value value="$USER_HOME$/.android/avd/Pixel_4_XL_API_31.avd" />
           </Key>
         </deviceKey>
       </Target>
@@ -29,7 +29,7 @@
         <deviceKey>
           <Key>
             <type value="VIRTUAL_DEVICE_PATH" />
-            <value value="$USER_HOME$/.android/avd/Pixel_4_XL_API_30.avd" />
+            <value value="$USER_HOME$/.android/avd/Pixel_4_XL_API_31_2.avd" />
           </Key>
         </deviceKey>
       </Target>
@@ -40,7 +40,7 @@
         <deviceKey>
           <Key>
             <type value="VIRTUAL_DEVICE_PATH" />
-            <value value="$USER_HOME$/.android/avd/Pixel_4_XL_API_30.avd" />
+            <value value="$USER_HOME$/.android/avd/Pixel_4_XL_API_31.avd" />
           </Key>
         </deviceKey>
       </Target>
