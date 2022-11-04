@@ -41,10 +41,8 @@ object RepositoryModule {
 	@Provides
 	@Singleton
 	fun provideFirebaseDataBaseRepository(
-//		dataBase: FirebaseDatabase
 		firebaseDatabaseDataSource: FirebaseDatabaseDataSource
 	) : FirebaseDatabaseRepository {
-//		return FirebaseDatabaseRepositoryImpl(dataBase)
 		return FirebaseDatabaseRepositoryImpl(firebaseDatabaseDataSource)
 	}
 }

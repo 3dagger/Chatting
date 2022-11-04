@@ -40,7 +40,7 @@ class CreateMessageFragment : BaseFragment<FragmentCreateMessageBinding>(R.layou
 			vm = viewModel
 		}
 
-		binding.recylcerView.adapter = this.adapter
+		binding.recyclerView.adapter = this.adapter
 		adapter.setSearchUserItemClickListener(this)
 
 		viewModel.getLoadAllUser().observe(viewLifecycleOwner) {
@@ -94,7 +94,6 @@ class CreateMessageFragment : BaseFragment<FragmentCreateMessageBinding>(R.layou
 	override fun itemClicked(userId: String) {
 		val newChat = Chat().apply {
 			info.id = viewModel.myUserId.value + userId
-			Log.d("leeam", "viewModel.myUserId.value :: ${viewModel.myUserId.value}\nuserId :: $userId\nadd result :: ${viewModel.myUserId.value + userId}")
 			lastMessage = Message(seen = true, text = "안녕하세요.", senderId = viewModel.myUserId.value!!)
 		}
 		viewModel.updateNewChat(newChat)

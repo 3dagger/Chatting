@@ -32,14 +32,14 @@
             android:id="@+id/back_button"
             android:layout_width="30dp"
             android:layout_height="30dp"
-            android:backgroundTint="@color/black"
-            android:background="@drawable/ic_baseline_close_24"
-            android:visibility="@{isHaveClose ? View.VISIBLE : View.GONE}"
             android:layout_marginStart="15dp"
+            android:background="@drawable/ic_baseline_close_24"
+            android:backgroundTint="@color/black"
             android:onClick="@{() -> click.onLeftClicked()}"
+            android:visibility="@{isHaveClose ? View.VISIBLE : View.GONE}"
+            app:layout_constraintBottom_toBottomOf="parent"
             app:layout_constraintStart_toStartOf="parent"
-            app:layout_constraintTop_toTopOf="parent"
-            app:layout_constraintBottom_toBottomOf="parent" />
+            app:layout_constraintTop_toTopOf="parent" />
 
         <TextView
             android:layout_width="wrap_content"

@@ -14,9 +14,6 @@ class SplashViewModel @Inject constructor(
 	private val getIsLoggedUserUseCase: GetIsLoggedUserUseCase
 )  : ViewModel() {
 
-//	private val _isLoginUser = MutableLiveData<Boolean>()
-//	val isLoginUser : LiveData<Boolean> = _isLoginUser
-
 	private val _isLoggedUser = MutableLiveData<Boolean>()
 	val isLoggedUser: LiveData<Boolean> = _isLoggedUser
 
@@ -27,7 +24,6 @@ class SplashViewModel @Inject constructor(
 
 		viewModelScope.launch {
 			getUserLoginUseCase.invoke().collectLatest {
-//				_isLoginUser.value = it
 			}
 		}
 	}

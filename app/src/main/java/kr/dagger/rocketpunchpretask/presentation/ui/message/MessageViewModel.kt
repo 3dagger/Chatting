@@ -1,6 +1,8 @@
 package kr.dagger.rocketpunchpretask.presentation.ui.message
 
 import android.util.Log
+import androidx.lifecycle.LiveData
+import androidx.lifecycle.MutableLiveData
 import androidx.lifecycle.ViewModel
 import androidx.lifecycle.liveData
 import androidx.lifecycle.viewModelScope
@@ -20,6 +22,18 @@ class MessageViewModel @Inject constructor(
 	private val getChatListUseCase: GetChatListUseCase
 ) : ViewModel() {
 
+	private val _myUserId = MutableLiveData<String>()
+	val myUserId: LiveData<String> = _myUserId
+
+	init {
+		viewModelScope.launch {
+			getMyUserIdUseCase.invoke().collect {
+				_myUserId.value = it
+			}
+		}
+	}
+
+
 	fun loadChat() = liveData(Dispatchers.IO) {
 		getChatUseCase.invoke().collect { response ->
 			emit(response)
@@ -37,8 +51,6 @@ class MessageViewModel @Inject constructor(
 			emit(response)
 		}
 	}
-
-
 
 	fun saveIsLogin(isLogin: Boolean) {
 		viewModelScope.launch {

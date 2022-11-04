@@ -46,8 +46,6 @@ class MessageFragment : BaseFragment<FragmentMessageBinding>(R.layout.fragment_m
 				}
 				is Response.Success -> {
 					binding.progressBar.visibility = View.INVISIBLE
-					Log.d("leeam", "result :: ${it.data}")
-
 				}
 				is Response.Error -> {
 					binding.progressBar.visibility = View.INVISIBLE

@@ -75,8 +75,8 @@
             android:layout_height="wrap_content"
             android:layout_marginTop="50dp"
             android:backgroundTint="#ff6262"
-            android:text="로그아웃"
             android:onClick="@{() -> fm.signOut()}"
+            android:text="@string/my_page_fragment_logout"
             android:textColor="@color/white"
             android:textSize="14sp"
             android:textStyle="bold"
@@ -86,15 +86,15 @@
 
         <ProgressBar
             android:id="@+id/progressBar"
-            android:visibility="invisible"
-            android:indeterminateTint="@color/main"
-            app:layout_constraintTop_toTopOf="parent"
-            app:layout_constraintBottom_toBottomOf="parent"
-            app:layout_constraintStart_toStartOf="parent"
-            app:layout_constraintEnd_toEndOf="parent"
-            tools:visibility="visible"
             android:layout_width="wrap_content"
-            android:layout_height="wrap_content"/>
+            android:layout_height="wrap_content"
+            android:indeterminateTint="@color/main"
+            android:visibility="invisible"
+            app:layout_constraintBottom_toBottomOf="parent"
+            app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintTop_toTopOf="parent"
+            tools:visibility="visible" />
 
 
     </androidx.constraintlayout.widget.ConstraintLayout>

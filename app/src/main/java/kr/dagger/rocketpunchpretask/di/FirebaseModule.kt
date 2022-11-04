@@ -24,12 +24,4 @@ object FirebaseModule {
 	fun provideFirebaseDatabaseInstance(): FirebaseDatabase {
 		return FirebaseDatabase.getInstance()
 	}
-
-	@Provides
-	@Singleton
-	fun provideFirebaseRealtimeDataBase(database: FirebaseDatabase) : DatabaseReference {
-		return database.reference.child("asdf")
-	}
-
-
 }
