@@ -8,7 +8,6 @@ import kr.dagger.domain.repository.FirebaseDatabaseRepository
 class GetChatListUseCase(
 	private val repository: FirebaseDatabaseRepository
 ) {
-
 	suspend operator fun invoke(): Flow<Response<List<Chat>>> {
 		return repository.loadChatList()
 	}

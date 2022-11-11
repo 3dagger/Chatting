@@ -7,9 +7,7 @@ import kr.dagger.domain.repository.AuthRepository
 class SignOutUseCase(
 	private val repository: AuthRepository
 ) {
-
 	suspend operator fun invoke(): Flow<Response<Void>> {
 		return repository.logoutUser()
 	}
-
 }

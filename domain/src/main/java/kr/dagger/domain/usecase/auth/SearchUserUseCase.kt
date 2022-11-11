@@ -8,9 +8,7 @@ import kr.dagger.domain.repository.FirebaseDatabaseRepository
 class SearchUserUseCase(
 	private val repository: FirebaseDatabaseRepository
 ) {
-
 	suspend operator fun invoke(targetName: String): Flow<Response<List<User>>> {
 		return repository.searchUsers(targetName)
 	}
-
 }

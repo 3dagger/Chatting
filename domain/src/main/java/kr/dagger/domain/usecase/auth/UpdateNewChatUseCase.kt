@@ -6,9 +6,7 @@ import kr.dagger.domain.repository.FirebaseDatabaseRepository
 class UpdateNewChatUseCase(
 	private val repository: FirebaseDatabaseRepository
 ) {
-
 	fun updateNewChat(chat: Chat) {
 		repository.updateNewChat(chat)
 	}
-
 }
