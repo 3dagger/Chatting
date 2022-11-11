@@ -9,7 +9,7 @@
       "client_info": {
         "mobilesdk_app_id": "1:342907767103:android:9383942a4c4b27edbe2b8a",
         "android_client_info": {
-          "package_name": "kr.dagger.rocketpunchpretask"
+          "package_name": "kr.dagger.chat"
         }
       },
       "oauth_client": [
@@ -17,7 +17,7 @@
           "client_id": "342907767103-8jujforiualb7969ms3it1p5d0cl7oqq.apps.googleusercontent.com",
           "client_type": 1,
           "android_info": {
-            "package_name": "kr.dagger.rocketpunchpretask",
+            "package_name": "kr.dagger.chat",
             "certificate_hash": "248381dcd253af400f3e795b9b341b52ecbbcec7"
           }
         },

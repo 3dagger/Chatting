@@ -9,11 +9,11 @@ plugins {
 }
 
 android {
-    namespace = "kr.dagger.rocketpunchpretask"
+    namespace = "kr.dagger.chat"
     compileSdk = ConfigData.CompileSdkVersion
 
     defaultConfig {
-        applicationId = "kr.dagger.rocketpunchpretask"
+        applicationId = "kr.dagger.chat"
         minSdk = ConfigData.MinSdkVersion
         targetSdk = ConfigData.TargetSdkVersion
         versionCode = ConfigData.VersionCode
@@ -49,6 +49,7 @@ dependencies {
     implementation(project(ProjectConstants.Data))
     implementation(project(ProjectConstants.Domain))
 
+    implementation(Dependencies.Kotlin.StdLib)
     implementation(Dependencies.AndroidSupport.CoreKtx)
     implementation(Dependencies.AndroidSupport.AppCompat)
     implementation(Dependencies.AndroidSupport.Material)
@@ -63,22 +64,21 @@ dependencies {
     implementation(Dependencies.AndroidSupport.LifeCycle.ViewModelKtx)
     implementation(Dependencies.AndroidSupport.LifeCycle.LiveDataKtx)
     implementation(Dependencies.AndroidSupport.LifeCycle.Runtime)
-
     implementation(Dependencies.Coroutines.Core)
     implementation(Dependencies.Coroutines.Android)
-    implementation(Dependencies.Kotlin.StdLib)
-
-    implementation(Dependencies.Hilt.Android)
-    kapt(Dependencies.Hilt.Compiler)
-
     implementation(Dependencies.Okhttp.OkHttp)
     implementation(Dependencies.Okhttp.LoggingInterceptor)
     implementation(Dependencies.Retrofit.Retrofit)
     implementation(Dependencies.Retrofit.GsonConverter)
+    implementation(Dependencies.Log.Timber)
+
+    implementation(Dependencies.Hilt.Android)
+    implementation("androidx.test.ext:junit-ktx:1.1.3")
+    androidTestImplementation("junit:junit:4.12")
+    kapt(Dependencies.Hilt.Compiler)
 
     implementation(Dependencies.Glide.Glide)
     kapt(Dependencies.Glide.Compiler)
-
 
     // DataStore
     implementation("androidx.datastore:datastore-preferences:1.0.0")

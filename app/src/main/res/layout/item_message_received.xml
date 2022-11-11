@@ -7,7 +7,7 @@
 
         <variable
             name="vm"
-            type="kr.dagger.rocketpunchpretask.presentation.ui.message.chat.ChatViewModel" />
+            type="kr.dagger.chat.presentation.ui.message.chat.ChatViewModel" />
 
         <variable
             name="data"

@@ -9,11 +9,11 @@
 
         <variable
             name="activity"
-            type="kr.dagger.rocketpunchpretask.presentation.ui.login.LoginActivity" />
+            type="kr.dagger.chat.presentation.ui.login.LoginActivity" />
 
         <variable
             name="vm"
-            type="kr.dagger.rocketpunchpretask.presentation.ui.login.LoginViewModel" />
+            type="kr.dagger.chat.presentation.ui.login.LoginViewModel" />
     </data>
 
     <androidx.constraintlayout.widget.ConstraintLayout

@@ -7,17 +7,17 @@
 
     <fragment
         android:id="@+id/HomeFragment"
-        android:name="kr.dagger.rocketpunchpretask.presentation.ui.home.HomeFragment"
+        android:name="kr.dagger.chat.presentation.ui.home.HomeFragment"
         android:label="@string/home_fragment_label"
         tools:layout="@layout/fragment_home" />
     <fragment
         android:id="@+id/PeopleFragment"
-        android:name="kr.dagger.rocketpunchpretask.presentation.ui.people.PeopleFragment"
+        android:name="kr.dagger.chat.presentation.ui.people.PeopleFragment"
         android:label="@string/people_fragment_label"
         tools:layout="@layout/fragment_people" />
     <fragment
         android:id="@+id/MessageFragment"
-        android:name="kr.dagger.rocketpunchpretask.presentation.ui.message.MessageFragment"
+        android:name="kr.dagger.chat.presentation.ui.message.MessageFragment"
         android:label="@string/message_fragment_label"
         tools:layout="@layout/fragment_message">
 
@@ -32,7 +32,7 @@
 
     <fragment
         android:id="@+id/CreateMessageFragment"
-        android:name="kr.dagger.rocketpunchpretask.presentation.ui.message.create.CreateMessageFragment"
+        android:name="kr.dagger.chat.presentation.ui.message.create.CreateMessageFragment"
         tools:layout="@layout/fragment_create_message">
 
         <action
@@ -47,7 +47,7 @@
 
     <fragment
         android:id="@+id/ChatFragment"
-        android:name="kr.dagger.rocketpunchpretask.presentation.ui.message.chat.ChatFragment"
+        android:name="kr.dagger.chat.presentation.ui.message.chat.ChatFragment"
         tools:layout="@layout/fragment_chat">
 
         <action
@@ -62,7 +62,7 @@
 
     <fragment
         android:id="@+id/MyPageFragment"
-        android:name="kr.dagger.rocketpunchpretask.presentation.ui.mypage.MyPageFragment"
+        android:name="kr.dagger.chat.presentation.ui.mypage.MyPageFragment"
         android:label="@string/my_page_fragment_label"
         tools:layout="@layout/fragment_mypage">
 
@@ -70,7 +70,7 @@
 
     <fragment
         android:id="@+id/RecruitFragment"
-        android:name="kr.dagger.rocketpunchpretask.presentation.ui.recruit.RecruitFragment"
+        android:name="kr.dagger.chat.presentation.ui.recruit.RecruitFragment"
         android:label="@string/recruit_fragment_label"
         tools:layout="@layout/fragment_recruit">
 

@@ -1,41 +1,42 @@
 {
   "project_info": {
-    "project_number": "342907767103",
-    "project_id": "rocketpunch-pretask",
-    "storage_bucket": "rocketpunch-pretask.appspot.com"
+    "project_number": "222862312320",
+    "firebase_url": "https://chatapplication-2e757-default-rtdb.firebaseio.com",
+    "project_id": "chatapplication-2e757",
+    "storage_bucket": "chatapplication-2e757.appspot.com"
   },
   "client": [
     {
       "client_info": {
-        "mobilesdk_app_id": "1:342907767103:android:9383942a4c4b27edbe2b8a",
+        "mobilesdk_app_id": "1:222862312320:android:098e50cd487a4f05673765",
         "android_client_info": {
-          "package_name": "kr.dagger.rocketpunchpretask"
+          "package_name": "kr.dagger.chat"
         }
       },
       "oauth_client": [
         {
-          "client_id": "342907767103-8jujforiualb7969ms3it1p5d0cl7oqq.apps.googleusercontent.com",
+          "client_id": "222862312320-ui7mhn0j7gheso2kampcu9kcrgqp76hh.apps.googleusercontent.com",
           "client_type": 1,
           "android_info": {
-            "package_name": "kr.dagger.rocketpunchpretask",
-            "certificate_hash": "248381dcd253af400f3e795b9b341b52ecbbcec7"
+            "package_name": "kr.dagger.chat",
+            "certificate_hash": "23bcab977a426f7a379572ce01617fcf038f85fc"
           }
         },
         {
-          "client_id": "342907767103-u73o55rdt3msdof65fes9b4sor1fsu6n.apps.googleusercontent.com",
+          "client_id": "222862312320-qq86s9aafssnl8glel1ve6d1no3cqm96.apps.googleusercontent.com",
           "client_type": 3
         }
       ],
       "api_key": [
         {
-          "current_key": "AIzaSyCHu7Qz27cVJXPZE1MZClNsU9lKIbRzIa4"
+          "current_key": "AIzaSyDAkOy7UShraHd_keLvXBRccsCIPtm_Pjc"
         }
       ],
       "services": {
         "appinvite_service": {
           "other_platform_oauth_client": [
             {
-              "client_id": "342907767103-u73o55rdt3msdof65fes9b4sor1fsu6n.apps.googleusercontent.com",
+              "client_id": "222862312320-qq86s9aafssnl8glel1ve6d1no3cqm96.apps.googleusercontent.com",
               "client_type": 3
             }
           ]

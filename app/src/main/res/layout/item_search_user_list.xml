@@ -13,7 +13,7 @@
 
         <variable
             name="listener"
-            type="kr.dagger.rocketpunchpretask.presentation.ui.message.create.SearchUserItemClickListener" />
+            type="kr.dagger.chat.presentation.ui.message.create.SearchUserItemClickListener" />
     </data>
 
     <androidx.constraintlayout.widget.ConstraintLayout

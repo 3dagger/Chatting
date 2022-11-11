@@ -12,7 +12,7 @@ dependencyResolutionManagement {
         mavenCentral()
     }
 }
-rootProject.name = "RocketPunchPreTask"
+rootProject.name = "chat"
 include(":app")
 include(":domain")
 include(":data")

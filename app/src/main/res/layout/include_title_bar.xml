@@ -20,7 +20,7 @@
 
         <variable
             name="click"
-            type="kr.dagger.rocketpunchpretask.presentation.common.ButtonClickListener" />
+            type="kr.dagger.chat.presentation.common.ButtonClickListener" />
 
     </data>
 

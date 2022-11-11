@@ -8,7 +8,6 @@ object Dependencies {
 		const val Android = "org.jetbrains.kotlinx:kotlinx-coroutines-android:${Versions.Essential.CoroutineVersion}"
 	}
 
-
 	object AndroidSupport {
 		const val CoreKtx = "androidx.core:core-ktx:${Versions.AndroidSupport.CoreKtxVersion}"
 		const val AppCompat = "androidx.appcompat:appcompat:${Versions.AndroidSupport.AppCompatVersion}"
@@ -51,6 +50,10 @@ object Dependencies {
 	object Glide {
 		const val Glide = "com.github.bumptech.glide:glide:${Versions.Glide.GlideVersion}"
 		const val Compiler = "com.github.bumptech.glide:compiler:${Versions.Glide.CompilerVersion}"
+	}
+
+	object Log {
+		const val Timber = "com.jakewharton.timber:timber:${Versions.Timber.TimberVersion}"
 	}
 
 	object Test {

@@ -39,6 +39,10 @@ object Versions {
 		const val CompilerVersion = "4.11.0"
 	}
 
+	object Timber {
+		const val TimberVersion = "5.0.1"
+	}
+
 	object Test {
 		const val JUnitVersion = "5.8.2"
 		const val Coroutine = "1.6.21"

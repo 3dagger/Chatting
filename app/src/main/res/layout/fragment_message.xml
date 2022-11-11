@@ -9,11 +9,11 @@
 
         <variable
             name="fm"
-            type="kr.dagger.rocketpunchpretask.presentation.ui.message.MessageFragment" />
+            type="kr.dagger.chat.presentation.ui.message.MessageFragment" />
 
         <variable
             name="clickListener"
-            type="kr.dagger.rocketpunchpretask.presentation.common.ButtonClickListener" />
+            type="kr.dagger.chat.presentation.common.ButtonClickListener" />
 
     </data>
 

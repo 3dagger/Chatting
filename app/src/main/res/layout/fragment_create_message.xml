@@ -17,11 +17,11 @@
 
         <variable
             name="clickListener"
-            type="kr.dagger.rocketpunchpretask.presentation.common.ButtonClickListener" />
+            type="kr.dagger.chat.presentation.common.ButtonClickListener" />
 
         <variable
             name="vm"
-            type="kr.dagger.rocketpunchpretask.presentation.ui.message.create.CreateMessageViewModel" />
+            type="kr.dagger.chat.presentation.ui.message.create.CreateMessageViewModel" />
     </data>
 
     <androidx.constraintlayout.widget.ConstraintLayout
