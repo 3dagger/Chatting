@@ -3,7 +3,10 @@ package kr.dagger.data.repository
 import com.google.android.gms.auth.api.signin.GoogleSignInClient
 import com.google.firebase.auth.FirebaseAuth
 import com.google.firebase.auth.GoogleAuthProvider
+import kotlinx.coroutines.cancel
+import kotlinx.coroutines.channels.awaitClose
 import kotlinx.coroutines.flow.Flow
+import kotlinx.coroutines.flow.callbackFlow
 import kotlinx.coroutines.flow.flow
 import kotlinx.coroutines.tasks.await
 import kr.dagger.domain.model.Response
@@ -19,16 +22,20 @@ class AuthRepositoryImpl @Inject constructor(
 		return auth.currentUser != null
 	}
 
-	override suspend fun loginUser(idToken: String) = flow {
-		try {
-			emit(Response.Loading)
+
+	override suspend fun loginUser(idToken: String): Flow<Response<Unit>> = callbackFlow {
+			trySend(Response.Loading)
 			val credential = GoogleAuthProvider.getCredential(idToken, null)
-			auth.signInWithCredential(credential).await().additionalUserInfo?.apply {
-				emit(Response.Success(isNewUser))
+			auth.signInWithCredential(credential).addOnCompleteListener { task ->
+				if (task.isSuccessful) {
+					trySend(Response.Success(Unit))
+				} else {
+					trySend(Response.Error(task.exception?.message ?: ""))
+				}
 			}
-		} catch (e: Exception) {
-			emit(Response.Error(e.message ?: "요청에 실패하였습니다."))
-		}
+			awaitClose {
+				this.cancel()
+			}
 	}
 
 	override suspend fun logoutUser(): Flow<Response<Void>> = flow {

@@ -8,15 +8,14 @@ import androidx.activity.result.contract.ActivityResultContracts
 import androidx.activity.viewModels
 import com.google.android.gms.auth.api.Auth
 import dagger.hilt.android.AndroidEntryPoint
-import kr.dagger.domain.model.Response
-import kr.dagger.domain.model.User
-import kr.dagger.domain.model.UserInfo
-import kr.dagger.chat.presentation.ui.MainActivity
 import kr.dagger.chat.R
 import kr.dagger.chat.base.BaseActivity
 import kr.dagger.chat.databinding.ActivityLoginBinding
 import kr.dagger.chat.presentation.extension.toast
-
+import kr.dagger.chat.presentation.ui.MainActivity
+import kr.dagger.domain.model.Response
+import kr.dagger.domain.model.User
+import kr.dagger.domain.model.UserInfo
 import javax.inject.Inject
 
 @AndroidEntryPoint
@@ -61,7 +60,7 @@ class LoginActivity : BaseActivity<ActivityLoginBinding>(R.layout.activity_login
 	}
 
 	private fun signInWithGoogle(idToken: String) {
-		viewModel.googleSignIn(idToken).observe(this) {
+		viewModel.signIn(idToken).observe(this) {
 			when (it) {
 				is Response.Loading -> binding.progressBar.visibility = View.VISIBLE
 				is Response.Success -> {
@@ -74,6 +73,21 @@ class LoginActivity : BaseActivity<ActivityLoginBinding>(R.layout.activity_login
 				}
 			}
 		}
+
+
+//		viewModel.googleSignIn(idToken).observe(this) {
+//			when (it) {
+//				is Response.Loading -> binding.progressBar.visibility = View.VISIBLE
+//				is Response.Success -> {
+//					binding.progressBar.visibility = View.INVISIBLE
+//					moveMainActivity()
+//				}
+//				is Response.Error -> {
+//					binding.progressBar.visibility = View.INVISIBLE
+//					toast(it.errorMessage)
+//				}
+//			}
+//		}
 	}
 
 	fun signIn() {

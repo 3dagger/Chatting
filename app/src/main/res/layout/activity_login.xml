@@ -19,14 +19,14 @@
     <androidx.constraintlayout.widget.ConstraintLayout
         android:layout_width="match_parent"
         android:layout_height="match_parent">
-
+<!--        android:src="@drawable/rocket_punch_login"-->
         <ImageView
             android:id="@+id/img_logo"
             android:layout_width="match_parent"
             android:layout_height="@dimen/login_logo_height"
             android:layout_marginStart="@dimen/login_logo_margin_start"
             android:layout_marginEnd="@dimen/login_logo_marin_end"
-            android:src="@drawable/rocket_punch_login"
+            
             app:layout_constraintBottom_toTopOf="@+id/btn_login"
             app:layout_constraintEnd_toEndOf="parent"
             app:layout_constraintStart_toStartOf="parent"

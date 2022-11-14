@@ -8,7 +8,7 @@ import kr.dagger.data.entity.ChatEntity
 import kr.dagger.data.entity.UserEntity
 import kr.dagger.data.entity.UserInfoEntity
 import kr.dagger.domain.model.Response
-import kr.dagger.domain.model.UserInfo
+import timber.log.Timber
 import javax.inject.Inject
 
 class FirebaseDatabaseDataSourceImpl @Inject constructor(
@@ -24,7 +24,6 @@ class FirebaseDatabaseDataSourceImpl @Inject constructor(
 			}.apply {
 				emit(Response.Success(this))
 			}
-
 
 			val res = database.reference.child("users").child(targetName).get().await().children.mapNotNull { doc ->
 				doc.getValue(UserEntity::class.java)
@@ -42,6 +41,7 @@ class FirebaseDatabaseDataSourceImpl @Inject constructor(
 			database.reference.child("users").get().await().children.mapNotNull { doc ->
 				doc.getValue(UserEntity::class.java)
 			}.run {
+				Timber.d("this :: $this")
 				emit(Response.Success(this))
 			}
 		} catch (e: Exception) {

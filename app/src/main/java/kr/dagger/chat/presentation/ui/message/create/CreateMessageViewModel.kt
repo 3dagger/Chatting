@@ -9,6 +9,7 @@ import kr.dagger.domain.usecase.auth.GetAllUserUseCase
 import kr.dagger.domain.usecase.auth.GetMyUserIdUseCase
 import kr.dagger.domain.usecase.auth.SearchUserUseCase
 import kr.dagger.domain.usecase.auth.UpdateNewChatUseCase
+import timber.log.Timber
 import javax.inject.Inject
 
 @HiltViewModel
@@ -29,6 +30,12 @@ class CreateMessageViewModel @Inject constructor(
 		viewModelScope.launch {
 			getMyUserIdUseCase.invoke().collect {
 				_myUserId.value = it
+			}
+		}
+
+		viewModelScope.launch {
+			getAllUserUseCase.invoke().collect { response ->
+				Timber.d("response :: $response")
 			}
 		}
 	}

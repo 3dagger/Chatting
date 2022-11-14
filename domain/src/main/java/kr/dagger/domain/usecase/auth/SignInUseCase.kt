@@ -7,7 +7,7 @@ import kr.dagger.domain.repository.AuthRepository
 class SignInUseCase(
 	private val repository: AuthRepository
 ) {
-	suspend operator fun invoke(idToken: String) : Flow<Response<Boolean>> {
+	suspend operator fun invoke(idToken: String) : Flow<Response<Unit>> {
 		return repository.loginUser(idToken)
 	}
 }

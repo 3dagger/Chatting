@@ -46,7 +46,7 @@ dependencies {
 	implementation(Dependencies.Retrofit.GsonConverter)
 	implementation(Dependencies.Hilt.Android)
 	kapt(Dependencies.Hilt.Compiler)
-
+	implementation(Dependencies.Log.Timber)
 	// DataStore
 	implementation("androidx.datastore:datastore-preferences:1.0.0")
 	// Google

@@ -1,6 +1,5 @@
 package kr.dagger.data.repository
 
-import android.util.Log
 import kotlinx.coroutines.flow.Flow
 import kotlinx.coroutines.flow.transform
 import kr.dagger.data.mapper.*
@@ -25,7 +24,6 @@ class FirebaseDatabaseRepositoryImpl(
 					emit(Response.Error(response.errorMessage))
 				}
 				is Response.Success -> {
-					Log.d("leeam", "response data :: ${response.data}\nfinal :: ${response.data.map { UserDtoMapper().convert(it) }}")
 					emit(Response.Success(data = response.data.map { UserDtoMapper().convert(it) }))
 				}
 			}
