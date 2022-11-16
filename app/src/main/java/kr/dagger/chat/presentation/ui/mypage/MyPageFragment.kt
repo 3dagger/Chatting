@@ -11,7 +11,7 @@ import kr.dagger.chat.base.BaseFragment
 import kr.dagger.chat.databinding.FragmentMypageBinding
 import kr.dagger.chat.presentation.extension.openActivity
 import kr.dagger.chat.presentation.extension.toast
-import kr.dagger.chat.presentation.ui.login.LoginActivity
+import kr.dagger.chat.presentation.ui.sign.signin.SignInActivity
 
 @AndroidEntryPoint
 class MyPageFragment : BaseFragment<FragmentMypageBinding>(R.layout.fragment_mypage){
@@ -46,7 +46,7 @@ class MyPageFragment : BaseFragment<FragmentMypageBinding>(R.layout.fragment_myp
 
 	private fun moveLoginActivity() {
 		requireActivity().run {
-			openActivity(LoginActivity::class.java)
+			openActivity(SignInActivity::class.java)
 			finish()
 		}
 	}

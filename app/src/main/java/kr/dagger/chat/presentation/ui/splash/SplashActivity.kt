@@ -9,7 +9,7 @@ import kr.dagger.chat.base.BaseActivity
 import kr.dagger.chat.databinding.ActivitySplashBinding
 import kr.dagger.chat.presentation.extension.openActivity
 import kr.dagger.chat.presentation.ui.MainActivity
-import kr.dagger.chat.presentation.ui.login.LoginActivity
+import kr.dagger.chat.presentation.ui.sign.signin.SignInActivity
 
 @SuppressLint("CustomSplashScreen")
 @AndroidEntryPoint
@@ -31,7 +31,7 @@ class SplashActivity : BaseActivity<ActivitySplashBinding>(R.layout.activity_spl
 	}
 
 	private fun moveLogin() {
-		openActivity(LoginActivity::class.java)
+		openActivity(SignInActivity::class.java)
 		finish()
 	}
 

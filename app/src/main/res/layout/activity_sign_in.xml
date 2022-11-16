@@ -9,11 +9,11 @@
 
         <variable
             name="activity"
-            type="kr.dagger.chat.presentation.ui.login.LoginActivity" />
+            type="kr.dagger.chat.presentation.ui.sign.signin.SignInActivity" />
 
         <variable
             name="vm"
-            type="kr.dagger.chat.presentation.ui.login.LoginViewModel" />
+            type="kr.dagger.chat.presentation.ui.sign.signin.SignInViewModel" />
     </data>
 
     <androidx.constraintlayout.widget.ConstraintLayout
