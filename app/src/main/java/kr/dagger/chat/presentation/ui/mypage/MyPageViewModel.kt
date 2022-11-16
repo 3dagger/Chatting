@@ -17,5 +17,4 @@ class MyPageViewModel @Inject constructor(
 				emit(response)
 			}
 		}
-
 }
