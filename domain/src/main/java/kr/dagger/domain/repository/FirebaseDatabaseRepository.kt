@@ -18,7 +18,7 @@ interface FirebaseDatabaseRepository {
 
 	suspend fun loadUserInfo(userId: String): Flow<Response<UserInfo>>
 
-	fun updateNewUser(user: User)
+	suspend fun updateNewUser(user: User): Flow<Response<Unit>>
 
 	fun updateNewChat(chat: Chat)
 }

@@ -94,11 +94,11 @@ class FirebaseDatabaseRepositoryImpl(
 		}
 	}
 
-	override fun updateNewChat(chat: Chat) {
-		firebaseDatabaseDataSource.updateNewChat(ChatModelToChatEntityMapper().convert(chat))
+	override suspend fun updateNewUser(user: User): Flow<Response<Unit>> {
+		return firebaseDatabaseDataSource.updateNewUser(UserModelToUserEntityMapper().convert(user))
 	}
 
-	override fun updateNewUser(user: User) {
-		firebaseDatabaseDataSource.updateNewUser(UserModelToUserEntityMapper().convert(user))
+	override fun updateNewChat(chat: Chat) {
+		firebaseDatabaseDataSource.updateNewChat(ChatModelToChatEntityMapper().convert(chat))
 	}
 }

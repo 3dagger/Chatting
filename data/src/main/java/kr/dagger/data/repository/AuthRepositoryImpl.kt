@@ -22,20 +22,18 @@ class AuthRepositoryImpl @Inject constructor(
 		return auth.currentUser != null
 	}
 
-
 	override suspend fun loginUser(idToken: String): Flow<Response<Unit>> = callbackFlow {
 			trySend(Response.Loading)
 			val credential = GoogleAuthProvider.getCredential(idToken, null)
-			auth.signInWithCredential(credential).addOnCompleteListener { task ->
-				if (task.isSuccessful) {
-					trySend(Response.Success(Unit))
-				} else {
-					trySend(Response.Error(task.exception?.message ?: ""))
+			auth.signInWithCredential(credential)
+				.addOnCompleteListener { task ->
+					if (task.isSuccessful) {
+						trySend(Response.Success(Unit))
+					} else {
+						trySend(Response.Error(task.exception?.message ?: ""))
+					}
 				}
-			}
-			awaitClose {
-				this.cancel()
-			}
+			awaitClose { cancel() }
 	}
 
 	override suspend fun logoutUser(): Flow<Response<Void>> = flow {

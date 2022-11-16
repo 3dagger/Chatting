@@ -4,9 +4,7 @@ import kotlinx.coroutines.flow.Flow
 import kr.dagger.data.entity.ChatEntity
 import kr.dagger.data.entity.UserEntity
 import kr.dagger.data.entity.UserInfoEntity
-import kr.dagger.domain.model.Chat
 import kr.dagger.domain.model.Response
-import kr.dagger.domain.model.UserInfo
 
 
 interface FirebaseDatabaseDataSource {
@@ -21,7 +19,7 @@ interface FirebaseDatabaseDataSource {
 
 	suspend fun loadUserInfo(userId: String): Flow<Response<UserInfoEntity>>
 
-	fun updateNewUser(user: UserEntity)
+	suspend fun updateNewUser(user: UserEntity): Flow<Response<Unit>>
 
 	fun updateNewChat(chat: ChatEntity)
 }

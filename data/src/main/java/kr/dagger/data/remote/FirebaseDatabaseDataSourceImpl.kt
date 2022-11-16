@@ -1,7 +1,10 @@
 package kr.dagger.data.remote
 
 import com.google.firebase.database.FirebaseDatabase
+import kotlinx.coroutines.cancel
+import kotlinx.coroutines.channels.awaitClose
 import kotlinx.coroutines.flow.Flow
+import kotlinx.coroutines.flow.callbackFlow
 import kotlinx.coroutines.flow.flow
 import kotlinx.coroutines.tasks.await
 import kr.dagger.data.entity.ChatEntity
@@ -84,8 +87,19 @@ class FirebaseDatabaseDataSourceImpl @Inject constructor(
 		}
 	}
 
-	override fun updateNewUser(user: UserEntity) {
-		database.reference.child("users/${user.info.id}").setValue(user)
+	override suspend fun updateNewUser(user: UserEntity) = callbackFlow {
+			trySend(Response.Loading)
+			database.reference
+				.child("users/${user.info.id}")
+				.setValue(user)
+				.addOnCompleteListener { task ->
+					if (task.isSuccessful) {
+						trySend(Response.Success(Unit))
+					} else {
+						trySend(Response.Error(task.exception?.message ?: ""))
+					}
+				}
+			awaitClose { this.cancel() }
 	}
 
 	override fun updateNewChat(chat: ChatEntity) {
