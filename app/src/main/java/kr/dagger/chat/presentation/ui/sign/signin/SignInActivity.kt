@@ -13,9 +13,11 @@ import kr.dagger.chat.R
 import kr.dagger.chat.base.BaseActivity
 import kr.dagger.chat.databinding.ActivitySignInBinding
 import kr.dagger.chat.presentation.extension.inVisible
+import kr.dagger.chat.presentation.extension.openActivity
 import kr.dagger.chat.presentation.extension.show
 import kr.dagger.chat.presentation.extension.toast
 import kr.dagger.chat.presentation.ui.MainActivity
+import kr.dagger.chat.presentation.ui.sign.siginup.SignUpActivity
 import kr.dagger.domain.model.Response
 import kr.dagger.domain.model.User
 import kr.dagger.domain.model.UserInfo
@@ -93,6 +95,10 @@ class SignInActivity : BaseActivity<ActivitySignInBinding>(R.layout.activity_sig
 
 	fun signIn() {
 		signIn.launch(signInIntent)
+	}
+
+	fun signUp() {
+		openActivity(SignUpActivity::class.java)
 	}
 
 	private fun moveMainActivity() {

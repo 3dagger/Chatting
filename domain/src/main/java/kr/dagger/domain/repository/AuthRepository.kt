@@ -6,6 +6,8 @@ import kr.dagger.domain.model.Response
 interface AuthRepository {
 	fun isLoggedInUser(): Boolean
 
+//	suspend fun createUser(): Flow<Response<AuthResult>>
+
 	suspend fun loginUser(idToken: String): Flow<Response<Unit>>
 
 	suspend fun logoutUser(): Flow<Response<Void>>
