@@ -27,6 +27,7 @@
     <string name="hello_second_fragment">Hello second fragment. Arg: %1$s</string>
 
     <string name="login_button_text">로그인</string>
+    <string name="sign_up_button_text">회원가입</string>
 
     <string name="home_fragment_message_hint">메시지 입력</string>
 
