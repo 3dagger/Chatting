@@ -22,14 +22,26 @@ object UseCaseModule {
 
 	@Provides
 	@Singleton
+	fun provideSignUpEmailAndPasswordUseCase(repository: AuthRepository): SignUpEmailAndPasswordUseCase {
+		return SignUpEmailAndPasswordUseCase(repository)
+	}
+
+	@Provides
+	@Singleton
 	fun provideSignOutUseCase(repository: AuthRepository): SignOutUseCase {
 		return SignOutUseCase(repository)
 	}
 
 	@Provides
 	@Singleton
-	fun provideSignInUseCase(repository: AuthRepository): SignInUseCase {
-		return SignInUseCase(repository)
+	fun provideSignInEmailAndPasswordUseCase(repository: AuthRepository): SignInEmailAndPasswordUseCase {
+		return SignInEmailAndPasswordUseCase(repository)
+	}
+
+	@Provides
+	@Singleton
+	fun provideSignInGoogleUseCase(repository: AuthRepository): SignInGoogleUseCase {
+		return SignInGoogleUseCase(repository)
 	}
 
 	@Provides
@@ -97,7 +109,4 @@ object UseCaseModule {
 	fun provideGetMyUserIdUseCase(repository: UserDataStoreRepository): GetMyUserIdUseCase {
 		return GetMyUserIdUseCase(repository)
 	}
-
-
-
 }

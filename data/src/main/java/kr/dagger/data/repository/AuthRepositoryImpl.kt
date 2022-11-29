@@ -22,18 +22,42 @@ class AuthRepositoryImpl @Inject constructor(
 		return auth.currentUser != null
 	}
 
-	override suspend fun loginUser(idToken: String): Flow<Response<Unit>> = callbackFlow {
-			trySend(Response.Loading)
-			val credential = GoogleAuthProvider.getCredential(idToken, null)
-			auth.signInWithCredential(credential)
-				.addOnCompleteListener { task ->
-					if (task.isSuccessful) {
-						trySend(Response.Success(Unit))
-					} else {
-						trySend(Response.Error(task.exception?.message ?: ""))
-					}
+	override suspend fun createUser(email: String, password: String): Flow<Response<Unit>> = callbackFlow {
+		trySend(Response.Loading)
+		auth.createUserWithEmailAndPassword(email, password).addOnCompleteListener {
+			if (it.isSuccessful) {
+				trySend(Response.Success(Unit))
+			} else {
+				trySend(Response.Error(it.exception?.message ?: ""))
+			}
+		}
+		awaitClose { cancel() }
+	}
+
+	override suspend fun signInEmailAndPassword(email: String, password: String): Flow<Response<Unit>> = callbackFlow {
+		trySend(Response.Loading)
+		auth.signInWithEmailAndPassword(email, password).addOnCompleteListener {
+			if (it.isSuccessful) {
+				trySend(Response.Success(Unit))
+			} else {
+				trySend(Response.Error(it.exception?.message ?: ""))
+			}
+		}
+		awaitClose { cancel() }
+	}
+
+	override suspend fun signInGoogle(idToken: String): Flow<Response<Unit>> = callbackFlow {
+		trySend(Response.Loading)
+		val credential = GoogleAuthProvider.getCredential(idToken, null)
+		auth.signInWithCredential(credential)
+			.addOnCompleteListener { task ->
+				if (task.isSuccessful) {
+					trySend(Response.Success(Unit))
+				} else {
+					trySend(Response.Error(task.exception?.message ?: ""))
 				}
-			awaitClose { cancel() }
+			}
+		awaitClose { cancel() }
 	}
 
 	override suspend fun logoutUser(): Flow<Response<Void>> = flow {

@@ -4,10 +4,10 @@ import kotlinx.coroutines.flow.Flow
 import kr.dagger.domain.model.Response
 import kr.dagger.domain.repository.AuthRepository
 
-class SignInUseCase(
+class SignInGoogleUseCase(
 	private val repository: AuthRepository
 ) {
 	suspend operator fun invoke(idToken: String) : Flow<Response<Unit>> {
-		return repository.loginUser(idToken)
+		return repository.signInGoogle(idToken)
 	}
 }

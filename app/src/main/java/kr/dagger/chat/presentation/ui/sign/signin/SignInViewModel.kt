@@ -9,19 +9,19 @@ import kotlinx.coroutines.flow.collectLatest
 import kotlinx.coroutines.launch
 import kr.dagger.domain.model.User
 import kr.dagger.domain.usecase.auth.SaveMyUserIdUseCase
-import kr.dagger.domain.usecase.auth.SignInUseCase
+import kr.dagger.domain.usecase.auth.SignInGoogleUseCase
 import kr.dagger.domain.usecase.auth.UpdateNewUserUseCase
 import javax.inject.Inject
 
 @HiltViewModel
 class SignInViewModel @Inject constructor(
-	private val signInUseCase: SignInUseCase,
+	private val signInGoogleUseCase: SignInGoogleUseCase,
 	private val updateNewUserUseCase: UpdateNewUserUseCase,
 	private val saveMyUserIdUseCase: SaveMyUserIdUseCase
 ) : ViewModel() {
 
 	fun googleSignIn(idToken: String) = liveData(Dispatchers.IO) {
-		signInUseCase.invoke(idToken).collectLatest { response ->
+		signInGoogleUseCase.invoke(idToken).collectLatest { response ->
 			emit(response)
 		}
 	}
