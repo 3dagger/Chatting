@@ -28,8 +28,16 @@ class SignUpActivity : BaseActivity<ActivitySignUpBinding>(R.layout.activity_sig
 			Timber.d("currentEmailText :: $it")
 		}
 
+		viewModel.moveSignIn.observe(this) {
+			Timber.d("hashmap :: $it")
+		}
+
 		viewModel.toastMessage.observe(this) { errorMessage ->
 			toast(errorMessage)
 		}
+	}
+
+	override fun subscribeObservers() {
+
 	}
 }

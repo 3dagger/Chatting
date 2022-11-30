@@ -30,13 +30,13 @@
             app:layout_constraintEnd_toEndOf="parent"
             app:layout_constraintStart_toStartOf="parent"
             app:layout_constraintTop_toTopOf="parent" />
-
+<!--        android:onClick="@{() -> activity.signIn()}"-->
         <Button
             android:id="@+id/btn_email_sign_in"
             android:layout_width="300dp"
             android:layout_height="60dp"
             android:background="@drawable/login_button_round_background"
-            android:onClick="@{() -> activity.signIn()}"
+
             android:text="@string/email_login_button_text"
             android:textColor="@color/white"
             android:textSize="@dimen/login_button_text_size"
@@ -50,16 +50,16 @@
             android:id="@+id/btn_google_sign_in"
             android:layout_width="300dp"
             android:layout_height="60dp"
+            android:layout_marginTop="20dp"
             android:background="@drawable/login_button_round_background"
-            android:onClick="@{() -> activity.signIn()}"
+            android:onClick="@{() -> activity.signIn.launch(activity.signInIntent)}"
             android:text="@string/google_login_button_text"
             android:textColor="@color/white"
             android:textSize="@dimen/login_button_text_size"
             android:textStyle="bold"
-            app:layout_constraintBottom_toBottomOf="parent"
             app:layout_constraintEnd_toEndOf="parent"
             app:layout_constraintStart_toStartOf="parent"
-            app:layout_constraintTop_toBottomOf="@+id/img_logo" />
+            app:layout_constraintTop_toBottomOf="@+id/btn_email_sign_in" />
 
         <Button
             android:id="@+id/btn_sign_up"
@@ -74,14 +74,14 @@
             android:textStyle="bold"
             app:layout_constraintEnd_toEndOf="parent"
             app:layout_constraintStart_toStartOf="parent"
-            app:layout_constraintTop_toBottomOf="@+id/btn_email_sign_in" />
+            app:layout_constraintTop_toBottomOf="@+id/btn_google_sign_in" />
 
         <ProgressBar
             android:id="@+id/progressBar"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:indeterminateTint="@color/main"
-            android:visibility="invisible"
+            android:visibility="@{vm.isProgress ? View.VISIBLE : View.INVISIBLE}"
             app:layout_constraintBottom_toBottomOf="parent"
             app:layout_constraintEnd_toEndOf="parent"
             app:layout_constraintStart_toStartOf="parent"

@@ -21,7 +21,7 @@ class SplashActivity : BaseActivity<ActivitySplashBinding>(R.layout.activity_spl
 		subscribeObservers()
 	}
 
-	private fun subscribeObservers() {
+	override fun subscribeObservers() {
 		viewModel.isLoggedUser.observe(this@SplashActivity) {
 			when (it) {
 				true -> moveMain()
