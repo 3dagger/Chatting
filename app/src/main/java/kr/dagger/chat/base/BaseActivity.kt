@@ -11,9 +11,15 @@ abstract class BaseActivity<T : ViewDataBinding>(@LayoutRes private val layoutRe
 
 	abstract fun initView(savedInstanceState: Bundle?)
 
+	abstract fun subscribeObservers()
+
 	override fun onCreate(savedInstanceState: Bundle?) {
 		super.onCreate(savedInstanceState)
+
 		binding = DataBindingUtil.setContentView(this, layoutResId)
+
 		initView(savedInstanceState)
+
+		subscribeObservers()
 	}
 }
