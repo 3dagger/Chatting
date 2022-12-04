@@ -20,31 +20,99 @@
         android:layout_width="match_parent"
         android:layout_height="match_parent">
 
-        <ImageView
-            android:id="@+id/img_logo"
+
+        <com.google.android.material.card.MaterialCardView
+            android:id="@+id/card_view_email"
             android:layout_width="match_parent"
-            android:layout_height="@dimen/login_logo_height"
-            android:layout_marginStart="@dimen/login_logo_margin_start"
-            android:layout_marginEnd="@dimen/login_logo_marin_end"
-            app:layout_constraintBottom_toTopOf="@+id/btn_email_sign_in"
+            android:layout_height="wrap_content"
+            android:layout_margin="10dp"
+            app:layout_constraintBottom_toTopOf="@+id/card_view_password"
             app:layout_constraintEnd_toEndOf="parent"
             app:layout_constraintStart_toStartOf="parent"
-            app:layout_constraintTop_toTopOf="parent" />
-<!--        android:onClick="@{() -> activity.signIn()}"-->
+            app:layout_constraintTop_toTopOf="parent">
+
+            <com.google.android.material.textfield.TextInputLayout
+                android:id="@+id/input_user_email"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:gravity="center_vertical"
+                android:padding="10dp"
+                app:boxBackgroundMode="none"
+                app:boxCollapsedPaddingTop="0dp"
+                app:endIconMode="clear_text"
+                app:hintAnimationEnabled="false"
+                app:hintEnabled="false">
+
+                <com.google.android.material.textfield.TextInputEditText
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:gravity="center_vertical"
+                    android:hint="이메일"
+                    android:imeOptions="actionSearch"
+                    android:inputType="textWebEmailAddress"
+                    android:lines="1"
+                    android:padding="10dp"
+                    android:text="@={vm.currentEmailText}"
+                    android:textColorHint="@color/hint" />
+
+            </com.google.android.material.textfield.TextInputLayout>
+
+
+        </com.google.android.material.card.MaterialCardView>
+
+        <com.google.android.material.card.MaterialCardView
+            android:id="@+id/card_view_password"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_margin="10dp"
+            app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintTop_toBottomOf="@+id/card_view_email">
+
+            <com.google.android.material.textfield.TextInputLayout
+                android:id="@+id/input_user_password"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:gravity="center_vertical"
+                android:padding="10dp"
+                app:boxBackgroundMode="none"
+                app:boxCollapsedPaddingTop="0dp"
+                app:endIconMode="clear_text"
+                app:hintAnimationEnabled="false"
+                app:hintEnabled="false">
+
+                <com.google.android.material.textfield.TextInputEditText
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:gravity="center_vertical"
+                    android:hint="비밀번호(6자리 이상)"
+                    android:imeOptions="actionSearch"
+                    android:inputType="textPassword"
+                    android:lines="1"
+                    android:padding="10dp"
+                    android:text="@={vm.currentPasswordText}"
+                    android:textColorHint="@color/hint" />
+
+            </com.google.android.material.textfield.TextInputLayout>
+
+
+        </com.google.android.material.card.MaterialCardView>
+        <!--        android:onClick="@{() -> activity.signIn()}"-->
         <Button
             android:id="@+id/btn_email_sign_in"
             android:layout_width="300dp"
             android:layout_height="60dp"
+            android:layout_marginTop="20dp"
             android:background="@drawable/login_button_round_background"
-
+            android:onClick="@{() -> vm.emailAndPasswordSignIn(vm.currentEmailText, vm.currentPasswordText)}"
             android:text="@string/email_login_button_text"
             android:textColor="@color/white"
             android:textSize="@dimen/login_button_text_size"
             android:textStyle="bold"
-            app:layout_constraintBottom_toBottomOf="parent"
+            app:layout_constraintBottom_toTopOf="@+id/btn_google_sign_in"
             app:layout_constraintEnd_toEndOf="parent"
             app:layout_constraintStart_toStartOf="parent"
-            app:layout_constraintTop_toBottomOf="@+id/img_logo" />
+            app:layout_constraintTop_toBottomOf="@+id/bottom_guide_line_horizontal_center" />
 
         <Button
             android:id="@+id/btn_google_sign_in"
@@ -52,7 +120,7 @@
             android:layout_height="60dp"
             android:layout_marginTop="20dp"
             android:background="@drawable/login_button_round_background"
-            android:onClick="@{() -> activity.signIn.launch(activity.signInIntent)}"
+            android:onClick="@{() -> activity.signIn.launch(activity.googleSignInIntent)}"
             android:text="@string/google_login_button_text"
             android:textColor="@color/white"
             android:textSize="@dimen/login_button_text_size"
@@ -67,7 +135,7 @@
             android:layout_height="60dp"
             android:layout_marginTop="20dp"
             android:background="@drawable/login_button_round_background"
-            android:onClick="@{() -> activity.signUp()}"
+            android:onClick="@{() -> activity.signIn.launch(activity.signUpIntent)}"
             android:text="@string/sign_up_button_text"
             android:textColor="@color/white"
             android:textSize="@dimen/login_button_text_size"
@@ -87,6 +155,13 @@
             app:layout_constraintStart_toStartOf="parent"
             app:layout_constraintTop_toTopOf="parent"
             tools:visibility="visible" />
+
+        <androidx.constraintlayout.widget.Guideline
+            android:id="@+id/bottom_guide_line_horizontal_center"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:orientation="horizontal"
+            app:layout_constraintGuide_percent=".5" />
 
 
     </androidx.constraintlayout.widget.ConstraintLayout>

@@ -33,7 +33,6 @@ class SignUpViewModel @Inject constructor(
 						setProgress(true)
 					}
 					is Response.Success -> {
-						Timber.d("in?")
 						setProgress(false)
 						_moveSignIn.value = hashMapOf(currentEmailText.value!! to currentPasswordText.value!!)
 					}

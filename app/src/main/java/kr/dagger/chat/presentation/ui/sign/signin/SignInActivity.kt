@@ -11,18 +11,21 @@ import kr.dagger.chat.R
 import kr.dagger.chat.base.BaseActivity
 import kr.dagger.chat.databinding.ActivitySignInBinding
 import kr.dagger.chat.presentation.extension.openActivity
-import kr.dagger.chat.presentation.extension.toast
+import kr.dagger.chat.presentation.ui.Constants.RESULT_CODE_SIGN_UP
 import kr.dagger.chat.presentation.ui.MainActivity
 import kr.dagger.chat.presentation.ui.sign.siginup.SignUpActivity
 import javax.inject.Inject
 
+@Suppress("UNCHECKED_CAST")
 @AndroidEntryPoint
 class SignInActivity : BaseActivity<ActivitySignInBinding>(R.layout.activity_sign_in) {
 
 	@Inject
-	lateinit var signInIntent: Intent
+	lateinit var googleSignInIntent: Intent
 
 	lateinit var signIn: ActivityResultLauncher<Intent>
+
+	val signUpIntent: Intent by lazy { Intent(this, SignUpActivity::class.java) }
 
 	private val viewModel: SignInViewModel by viewModels()
 
@@ -34,11 +37,16 @@ class SignInActivity : BaseActivity<ActivitySignInBinding>(R.layout.activity_sig
 		}
 
 		signIn = registerForActivityResult(ActivityResultContracts.StartActivityForResult()) {
-			if (it.resultCode == RESULT_OK) {
-				val result = Auth.GoogleSignInApi.getSignInResultFromIntent(it.data!!)
-				viewModel.googleSignIn2(result?.signInAccount!!)
-			} else {
-				toast(message = "로그인에 실패하였습니다.")
+			when (it.resultCode) {
+				RESULT_OK -> {
+					val result = Auth.GoogleSignInApi.getSignInResultFromIntent(it.data!!)
+					viewModel.googleSignIn(result?.signInAccount!!)
+				}
+				RESULT_CODE_SIGN_UP -> {
+					val aa: HashMap<String, String> = it.data?.getSerializableExtra("AA") as HashMap<String, String>
+					viewModel.currentEmailText.value = aa.keys.joinToString("")
+					viewModel.currentPasswordText.value = aa.values.toString()
+				}
 			}
 		}
 	}
@@ -48,9 +56,5 @@ class SignInActivity : BaseActivity<ActivitySignInBinding>(R.layout.activity_sig
 			openActivity(MainActivity::class.java)
 			finish()
 		}
-	}
-
-	fun signUp() {
-		openActivity(SignUpActivity::class.java)
 	}
 }
