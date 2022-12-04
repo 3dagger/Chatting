@@ -1,6 +1,8 @@
 package kr.dagger.data.repository
 
+import android.net.Uri
 import com.google.android.gms.auth.api.signin.GoogleSignInClient
+import com.google.firebase.auth.AuthResult
 import com.google.firebase.auth.FirebaseAuth
 import com.google.firebase.auth.GoogleAuthProvider
 import kotlinx.coroutines.cancel
@@ -10,7 +12,9 @@ import kotlinx.coroutines.flow.callbackFlow
 import kotlinx.coroutines.flow.flow
 import kotlinx.coroutines.tasks.await
 import kr.dagger.domain.model.Response
+import kr.dagger.domain.model.UserInfo
 import kr.dagger.domain.repository.AuthRepository
+import timber.log.Timber
 import javax.inject.Inject
 
 class AuthRepositoryImpl @Inject constructor(
@@ -34,11 +38,18 @@ class AuthRepositoryImpl @Inject constructor(
 		awaitClose { cancel() }
 	}
 
-	override suspend fun signInEmailAndPassword(email: String, password: String): Flow<Response<Unit>> = callbackFlow {
+	override suspend fun signInEmailAndPassword(email: String, password: String): Flow<Response<UserInfo>> = callbackFlow {
 		trySend(Response.Loading)
 		auth.signInWithEmailAndPassword(email, password).addOnCompleteListener {
 			if (it.isSuccessful) {
-				trySend(Response.Success(Unit))
+				Timber.d("uid ?? ${it.result.user?.uid}\ndisplayName :: ${it.result.user?.displayName}")
+				trySend(Response.Success(UserInfo(
+					id = it.result.user?.uid ?: "",
+					givenName = it.result.user?.displayName ?: "",
+					displayName = it.result.user?.displayName ?: "No Name",
+					status = "Newbie",
+					profileImageUrl = ""
+				)))
 			} else {
 				trySend(Response.Error(it.exception?.message ?: ""))
 			}
@@ -60,11 +71,11 @@ class AuthRepositoryImpl @Inject constructor(
 		awaitClose { cancel() }
 	}
 
-	override suspend fun logoutUser(): Flow<Response<Void>> = flow {
+	override suspend fun logoutUser(): Flow<Response<Unit>> = flow {
 		try {
 			emit(Response.Loading)
 			googleSignInClient.signOut().await().run {
-				emit(Response.Success(this))
+				emit(Response.Success(Unit))
 			}
 			auth.signOut()
 		} catch (e: Exception) {
