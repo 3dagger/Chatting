@@ -8,6 +8,7 @@ import android.os.IBinder
 import android.view.View
 import android.view.inputmethod.InputMethodManager
 import android.widget.Toast
+import com.google.android.material.snackbar.Snackbar
 
 fun <T> Context.openActivity(it: Class<T>, extras: Bundle.() -> Unit = {}) {
 	val intent = Intent(this, it)
@@ -31,6 +32,13 @@ fun View.inVisible() {
 	this.visibility = View.INVISIBLE
 }
 
+fun showSnackBar(view: View, message: String, action: (Snackbar.() -> Unit)? = null) {
+	Snackbar.make(view, message, Snackbar.LENGTH_SHORT).apply {
+		action?.let { it() }
+		show()
+	}
+}
+
 fun deFocusAndHideKeyboard(activity: Activity?) {
 	if (activity == null) return
 	val view = activity.currentFocus
@@ -38,6 +46,11 @@ fun deFocusAndHideKeyboard(activity: Activity?) {
 		view.clearFocus()
 		hideKeyboard(activity, view.windowToken)
 	}
+}
+
+fun View.forceHideKeyboard() {
+	val inputManager: InputMethodManager = this.context.getSystemService(Context.INPUT_METHOD_SERVICE) as InputMethodManager
+	inputManager.hideSoftInputFromWindow(this.windowToken, InputMethodManager.HIDE_NOT_ALWAYS)
 }
 
 private fun hideKeyboard(activity: Activity?, windowToken: IBinder?) {

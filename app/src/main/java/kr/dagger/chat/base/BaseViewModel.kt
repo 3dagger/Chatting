@@ -14,11 +14,19 @@ open class BaseViewModel : ViewModel() {
 	val toastMessage : LiveData<String>
 		get() = _toastMessage
 
+	private val _snackMessage = MutableLiveData<String>()
+	val snackMessage : LiveData<String>
+		get() = _snackMessage
+
 	fun setProgress(value: Boolean) {
 		_isProgress.value = value
 	}
 
 	fun setToast(value: String) {
 		_toastMessage.value = value
+	}
+
+	fun setSnack(value: String) {
+		_snackMessage.value = value
 	}
 }

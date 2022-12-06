@@ -11,11 +11,10 @@ import kr.dagger.chat.base.SingleLiveEvent
 import kr.dagger.domain.model.Response
 import kr.dagger.domain.model.User
 import kr.dagger.domain.model.UserInfo
-import kr.dagger.domain.usecase.auth.SaveMyUserIdUseCase
-import kr.dagger.domain.usecase.auth.SignInEmailAndPasswordUseCase
-import kr.dagger.domain.usecase.auth.SignInGoogleUseCase
-import kr.dagger.domain.usecase.auth.UpdateNewUserUseCase
-import timber.log.Timber
+import kr.dagger.domain.usecase.SaveMyUserIdUseCase
+import kr.dagger.domain.usecase.sign.SignInEmailAndPasswordUseCase
+import kr.dagger.domain.usecase.sign.SignInGoogleUseCase
+import kr.dagger.domain.usecase.sign.UpdateNewUserUseCase
 import javax.inject.Inject
 
 @HiltViewModel
@@ -38,37 +37,11 @@ class SignInViewModel @Inject constructor(
 		viewModelScope.launch {
 			signInGoogleUseCase.invoke(signInAccount.idToken ?: "").collect { response ->
 				when (response) {
-					is Response.Loading -> setProgress(true)
+					is Response.Loading -> {
+						setProgress(true)
+					}
 					is Response.Success -> {
 						saveMyUserIdUseCase.invoke(signInAccount.id ?: "")
-						setProgress(false)
-						updateNewUser(
-							User(
-								UserInfo(
-									id = signInAccount.id ?: "",
-									givenName = signInAccount.givenName ?: "",
-									displayName = signInAccount.displayName ?: "",
-									status = "Newbie",
-									profileImageUrl = signInAccount.photoUrl.toString()
-								)
-							)
-						)
-					}
-					is Response.Error -> {
-						setProgress(false)
-						setToast(response.errorMessage)
-					}
-				}
-			}
-		}
-	}
-
-	fun emailAndPasswordSignIn(email: String, password: String) {
-		viewModelScope.launch {
-			signInEmailAndPasswordUseCase.invoke(email, password).collect { response ->
-				when (response) {
-					is Response.Loading -> setProgress(true)
-					is Response.Success -> {
 						setProgress(false)
 						updateNewUser(
 							User(
@@ -84,7 +57,31 @@ class SignInViewModel @Inject constructor(
 					}
 					is Response.Error -> {
 						setProgress(false)
-						setToast(response.errorMessage)
+						setSnack(response.errorMessage)
+					}
+				}
+			}
+		}
+	}
+
+	fun emailAndPasswordSignIn(email: String?, password: String?) {
+		viewModelScope.launch {
+			if (currentEmailText.value.isNullOrBlank() || currentPasswordText.value.isNullOrBlank()) {
+				setSnack("아이디 또는 비밀번호를 확인해주세요.")
+			} else {
+				signInEmailAndPasswordUseCase.invoke(email!!, password!!).collect { response ->
+					when (response) {
+						is Response.Loading -> {
+							setProgress(true)
+						}
+						is Response.Success -> {
+							setProgress(false)
+							_moveMain.call()
+						}
+						is Response.Error -> {
+							setProgress(false)
+							setSnack(response.errorMessage)
+						}
 					}
 				}
 			}
@@ -95,14 +92,16 @@ class SignInViewModel @Inject constructor(
 		viewModelScope.launch {
 			updateNewUserUseCase.invoke(User(user.info)).collect { response ->
 				when (response) {
-					is Response.Loading -> setProgress(true)
+					is Response.Loading -> {
+						setProgress(true)
+					}
 					is Response.Success -> {
 						setProgress(false)
 						_moveMain.call()
 					}
 					is Response.Error -> {
 						setProgress(false)
-						setToast(response.errorMessage)
+						setSnack(response.errorMessage)
 					}
 				}
 			}
