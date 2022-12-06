@@ -11,8 +11,11 @@ import kr.dagger.chat.R
 import kr.dagger.chat.base.BaseActivity
 import kr.dagger.chat.databinding.ActivitySignInBinding
 import kr.dagger.chat.presentation.extension.openActivity
+import kr.dagger.chat.presentation.extension.showSnackBar
+import kr.dagger.chat.presentation.ui.Constants.INTENT_SIGN_UP_RESULT
 import kr.dagger.chat.presentation.ui.Constants.RESULT_CODE_SIGN_UP
 import kr.dagger.chat.presentation.ui.MainActivity
+import kr.dagger.chat.presentation.ui.sign.SignRequired
 import kr.dagger.chat.presentation.ui.sign.siginup.SignUpActivity
 import javax.inject.Inject
 
@@ -43,15 +46,19 @@ class SignInActivity : BaseActivity<ActivitySignInBinding>(R.layout.activity_sig
 					viewModel.googleSignIn(result?.signInAccount!!)
 				}
 				RESULT_CODE_SIGN_UP -> {
-					val aa: HashMap<String, String> = it.data?.getSerializableExtra("AA") as HashMap<String, String>
-					viewModel.currentEmailText.value = aa.keys.joinToString("")
-					viewModel.currentPasswordText.value = aa.values.toString()
+					val result: HashMap<SignRequired, String> = it.data?.getSerializableExtra(INTENT_SIGN_UP_RESULT) as HashMap<SignRequired, String>
+					viewModel.currentEmailText.value = result[SignRequired.Email]
+					viewModel.currentPasswordText.value = result[SignRequired.Password]
 				}
 			}
 		}
 	}
 
 	override fun subscribeObservers() {
+		viewModel.snackMessage.observe(this) {
+			showSnackBar(binding.root, it)
+		}
+
 		viewModel.moveMain.observe(this) {
 			openActivity(MainActivity::class.java)
 			finish()

@@ -17,14 +17,52 @@
         android:layout_height="match_parent">
 
         <com.google.android.material.card.MaterialCardView
-            android:id="@+id/card_view_eamil"
+            android:id="@+id/card_view_display_name"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_margin="10dp"
+            app:layout_constraintBottom_toTopOf="@+id/card_view_email"
+            app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintTop_toTopOf="parent">
+
+            <com.google.android.material.textfield.TextInputLayout
+                android:id="@+id/input_user_display_name"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:gravity="center_vertical"
+                android:padding="10dp"
+                app:boxBackgroundMode="none"
+                app:boxCollapsedPaddingTop="0dp"
+                app:endIconMode="clear_text"
+                app:hintAnimationEnabled="false"
+                app:hintEnabled="false">
+
+                <com.google.android.material.textfield.TextInputEditText
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:gravity="center_vertical"
+                    android:hint="닉네임"
+                    android:imeOptions="actionSearch"
+                    android:inputType="textWebEmailAddress"
+                    android:lines="1"
+                    android:padding="10dp"
+                    android:text="@={vm.currentEmailText}"
+                    android:textColorHint="@color/hint" />
+
+            </com.google.android.material.textfield.TextInputLayout>
+
+        </com.google.android.material.card.MaterialCardView>
+
+        <com.google.android.material.card.MaterialCardView
+            android:id="@+id/card_view_email"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
             android:layout_margin="10dp"
             app:layout_constraintBottom_toTopOf="@+id/card_view_password"
             app:layout_constraintEnd_toEndOf="parent"
             app:layout_constraintStart_toStartOf="parent"
-            app:layout_constraintTop_toTopOf="parent">
+            app:layout_constraintTop_toBottomOf="@+id/card_view_display_name">
 
             <com.google.android.material.textfield.TextInputLayout
                 android:id="@+id/input_user_email"
@@ -63,7 +101,7 @@
             app:layout_constraintBottom_toTopOf="@+id/btn_sign_up"
             app:layout_constraintEnd_toEndOf="parent"
             app:layout_constraintStart_toStartOf="parent"
-            app:layout_constraintTop_toBottomOf="@+id/card_view_eamil">
+            app:layout_constraintTop_toBottomOf="@+id/card_view_email">
 
             <com.google.android.material.textfield.TextInputLayout
                 android:id="@+id/input_user_password"
