@@ -1,14 +1,13 @@
-package kr.dagger.domain.usecase.auth
+package kr.dagger.domain.usecase.sign
 
 import kotlinx.coroutines.flow.Flow
 import kr.dagger.domain.model.Response
-import kr.dagger.domain.model.UserInfo
 import kr.dagger.domain.repository.AuthRepository
 
 class SignInEmailAndPasswordUseCase(
 	private val repository: AuthRepository
 ) {
-	suspend operator fun invoke(email: String, password: String) : Flow<Response<UserInfo>> {
+	suspend operator fun invoke(email: String, password: String) : Flow<Response<Unit>> {
 		return repository.signInEmailAndPassword(email, password)
 	}
 }
