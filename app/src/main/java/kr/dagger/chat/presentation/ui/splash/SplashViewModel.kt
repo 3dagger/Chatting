@@ -4,8 +4,8 @@ import androidx.lifecycle.*
 import dagger.hilt.android.lifecycle.HiltViewModel
 import kotlinx.coroutines.flow.collectLatest
 import kotlinx.coroutines.launch
-import kr.dagger.domain.usecase.auth.GetIsLoggedUserUseCase
-import kr.dagger.domain.usecase.auth.GetUserLoginUseCase
+import kr.dagger.domain.usecase.sign.GetIsLoggedUserUseCase
+import kr.dagger.domain.usecase.GetUserLoginUseCase
 import javax.inject.Inject
 
 @HiltViewModel

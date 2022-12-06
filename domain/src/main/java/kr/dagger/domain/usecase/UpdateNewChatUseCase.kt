@@ -1,4 +1,4 @@
-package kr.dagger.domain.usecase.auth
+package kr.dagger.domain.usecase
 
 import kr.dagger.domain.model.Chat
 import kr.dagger.domain.repository.FirebaseDatabaseRepository

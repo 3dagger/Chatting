@@ -4,7 +4,7 @@ import androidx.lifecycle.ViewModel
 import androidx.lifecycle.liveData
 import dagger.hilt.android.lifecycle.HiltViewModel
 import kotlinx.coroutines.Dispatchers
-import kr.dagger.domain.usecase.auth.SignOutUseCase
+import kr.dagger.domain.usecase.sign.SignOutUseCase
 import javax.inject.Inject
 
 @HiltViewModel

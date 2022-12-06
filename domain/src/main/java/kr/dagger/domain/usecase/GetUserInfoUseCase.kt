@@ -1,4 +1,4 @@
-package kr.dagger.domain.usecase.auth
+package kr.dagger.domain.usecase
 
 import kotlinx.coroutines.flow.Flow
 import kr.dagger.domain.model.Response

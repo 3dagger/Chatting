@@ -1,14 +1,14 @@
-package kr.dagger.domain.usecase.auth
+package kr.dagger.domain.usecase
 
 import kotlinx.coroutines.flow.Flow
+import kr.dagger.domain.model.Chat
 import kr.dagger.domain.model.Response
-import kr.dagger.domain.model.User
 import kr.dagger.domain.repository.FirebaseDatabaseRepository
 
-class UpdateNewUserUseCase(
+class GetChatUseCase(
 	private val repository: FirebaseDatabaseRepository
 ) {
-	suspend fun invoke(user: User) : Flow<Response<Unit>> {
-		return repository.updateNewUser(user)
+	suspend operator fun invoke(): Flow<Response<Chat>> {
+		return repository.loadChat()
 	}
 }

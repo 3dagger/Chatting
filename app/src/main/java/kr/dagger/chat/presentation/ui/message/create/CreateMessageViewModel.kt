@@ -5,10 +5,10 @@ import dagger.hilt.android.lifecycle.HiltViewModel
 import kotlinx.coroutines.Dispatchers
 import kotlinx.coroutines.launch
 import kr.dagger.domain.model.Chat
-import kr.dagger.domain.usecase.auth.GetAllUserUseCase
-import kr.dagger.domain.usecase.auth.GetMyUserIdUseCase
-import kr.dagger.domain.usecase.auth.SearchUserUseCase
-import kr.dagger.domain.usecase.auth.UpdateNewChatUseCase
+import kr.dagger.domain.usecase.GetAllUserUseCase
+import kr.dagger.domain.usecase.GetMyUserIdUseCase
+import kr.dagger.domain.usecase.SearchUserUseCase
+import kr.dagger.domain.usecase.UpdateNewChatUseCase
 import timber.log.Timber
 import javax.inject.Inject
 

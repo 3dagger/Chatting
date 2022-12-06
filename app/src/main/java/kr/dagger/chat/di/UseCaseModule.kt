@@ -7,7 +7,8 @@ import dagger.hilt.components.SingletonComponent
 import kr.dagger.domain.repository.AuthRepository
 import kr.dagger.domain.repository.FirebaseDatabaseRepository
 import kr.dagger.domain.repository.UserDataStoreRepository
-import kr.dagger.domain.usecase.auth.*
+import kr.dagger.domain.usecase.*
+import kr.dagger.domain.usecase.sign.*
 import javax.inject.Singleton
 
 @Module

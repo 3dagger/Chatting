@@ -97,7 +97,7 @@
 
 
         </com.google.android.material.card.MaterialCardView>
-        <!--        android:onClick="@{() -> activity.signIn()}"-->
+
         <Button
             android:id="@+id/btn_email_sign_in"
             android:layout_width="300dp"

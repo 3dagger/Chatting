@@ -1,4 +1,4 @@
-package kr.dagger.domain.usecase.auth
+package kr.dagger.domain.usecase.sign
 
 import kr.dagger.domain.repository.AuthRepository
 
