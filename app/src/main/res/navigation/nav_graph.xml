@@ -14,7 +14,23 @@
         android:id="@+id/PeopleFragment"
         android:name="kr.dagger.chat.presentation.ui.people.PeopleFragment"
         android:label="@string/people_fragment_label"
-        tools:layout="@layout/fragment_people" />
+        tools:layout="@layout/fragment_people">
+
+        <action
+            android:id="@+id/action_navigation_peopleFragment_to_connectFragment"
+            app:destination="@+id/ConnectFragment" />
+
+    </fragment>
+
+    <fragment
+        android:id="@+id/ConnectFragment"
+        android:name="kr.dagger.chat.presentation.ui.connect.ConnectFragment">
+
+        <argument
+            android:name="user"
+            app:argType="kr.dagger.domain.model.User" />
+
+    </fragment>
     <fragment
         android:id="@+id/MessageFragment"
         android:name="kr.dagger.chat.presentation.ui.message.MessageFragment"
@@ -47,7 +63,7 @@
 
     <fragment
         android:id="@+id/ChatFragment"
-        android:name="kr.dagger.chat.presentation.ui.message.chat.ChatFragment"
+        android:name="kr.dagger.chat.presentation.ui.chat.ChatFragment"
         tools:layout="@layout/fragment_chat">
 
         <action
