@@ -6,14 +6,15 @@ import androidx.core.os.bundleOf
 import androidx.fragment.app.viewModels
 import androidx.navigation.fragment.findNavController
 import dagger.hilt.android.AndroidEntryPoint
-import kr.dagger.domain.model.Chat
-import kr.dagger.domain.model.Message
-import kr.dagger.domain.model.Response
 import kr.dagger.chat.R
 import kr.dagger.chat.base.BaseFragment
 import kr.dagger.chat.databinding.FragmentCreateMessageBinding
 import kr.dagger.chat.presentation.common.ButtonClickListener
-import kr.dagger.chat.presentation.ui.message.chat.ChatFragment
+import kr.dagger.chat.presentation.ui.chat.ChatFragment
+import kr.dagger.domain.model.Chat
+import kr.dagger.domain.model.Message
+import kr.dagger.domain.model.Response
+import kr.dagger.domain.model.User
 
 @AndroidEntryPoint
 class CreateMessageFragment : BaseFragment<FragmentCreateMessageBinding>(R.layout.fragment_create_message),
@@ -84,15 +85,15 @@ class CreateMessageFragment : BaseFragment<FragmentCreateMessageBinding>(R.layou
 		findNavController().navigate(R.id.action_navigation_createMessageFragment_to_messageFragment)
 	}
 
-	override fun itemClicked(userId: String) {
+	override fun itemClicked(user: User) {
 		val newChat = Chat().apply {
-			info.id = viewModel.myUserId.value + userId
+			info.id = viewModel.myUserId.value + user
 			lastMessage = Message(seen = true, text = "안녕하세요.", senderId = viewModel.myUserId.value!!)
 		}
 		viewModel.updateNewChat(newChat)
 
 		val bundle = bundleOf(
-			ChatFragment.ARGUMENTS_KEY_USER_ID to userId
+			ChatFragment.ARGUMENTS_KEY_USER_ID to user
 		)
 		findNavController().navigate(R.id.action_navigation_createMessageFragment_to_chatFragment, bundle)
 	}

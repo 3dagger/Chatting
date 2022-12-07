@@ -1,6 +1,8 @@
 package kr.dagger.chat.presentation.ui.message.create
 
+import kr.dagger.domain.model.User
+
 interface SearchUserItemClickListener {
 
-	fun itemClicked(userId: String)
+	fun itemClicked(user: User)
 }
