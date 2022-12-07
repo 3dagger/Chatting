@@ -28,13 +28,6 @@
         android:layout_width="match_parent"
         android:layout_height="match_parent">
 
-        <include
-            android:id="@+id/include_title_bar"
-            layout="@layout/include_title_bar"
-            app:click="@{clickListener}"
-            app:isHaveClose="@{true}"
-            app:title="@{`새 메시지`}" />
-
         <EditText
             android:id="@+id/edt_user_search"
             android:layout_width="match_parent"
@@ -48,7 +41,7 @@
             app:layout_constraintBottom_toTopOf="@id/recyclerView"
             app:layout_constraintEnd_toEndOf="parent"
             app:layout_constraintStart_toStartOf="parent"
-            app:layout_constraintTop_toBottomOf="@id/include_title_bar" />
+            app:layout_constraintTop_toTopOf="parent" />
 
         <View
             android:id="@+id/horizontal_view"

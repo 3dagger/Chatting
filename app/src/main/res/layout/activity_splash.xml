@@ -6,8 +6,8 @@
         android:layout_width="match_parent"
         android:layout_height="match_parent">
 
+<!--        android:src="@mipmap/ic_rocket_punch_logo"-->
         <ImageView
-            android:src="@mipmap/ic_rocket_punch_logo"
             app:layout_constraintTop_toTopOf="parent"
             app:layout_constraintBottom_toBottomOf="parent"
             app:layout_constraintStart_toStartOf="parent"
