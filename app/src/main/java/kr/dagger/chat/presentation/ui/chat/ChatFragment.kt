@@ -1,4 +1,4 @@
-package kr.dagger.chat.presentation.ui.message.chat
+package kr.dagger.chat.presentation.ui.chat
 
 import android.os.Bundle
 import android.view.View

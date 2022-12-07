@@ -1,4 +1,4 @@
-package kr.dagger.chat.presentation.ui.message.chat
+package kr.dagger.chat.presentation.ui.chat
 
 import androidx.recyclerview.widget.DiffUtil
 import kr.dagger.domain.model.Message

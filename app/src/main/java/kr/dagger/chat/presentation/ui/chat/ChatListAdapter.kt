@@ -1,13 +1,12 @@
-package kr.dagger.chat.presentation.ui.message.chat
+package kr.dagger.chat.presentation.ui.chat
 
 import android.view.LayoutInflater
 import android.view.ViewGroup
 import androidx.recyclerview.widget.ListAdapter
 import androidx.recyclerview.widget.RecyclerView
-import kr.dagger.domain.model.Message
 import kr.dagger.chat.databinding.ItemMessageReceivedBinding
 import kr.dagger.chat.databinding.ItemMessageSentBinding
-import java.lang.Exception
+import kr.dagger.domain.model.Message
 
 class ChatListAdapter constructor(
 	private val viewModel: ChatViewModel,
@@ -47,10 +46,6 @@ class ChatListAdapter constructor(
 			binding.apply {
 				vm = viewModel
 				data = msg
-
-//				val halfHourMill = 1_800_000
-//				val index =
-//				txtReceivedTime
 			}
 		}
 	}
