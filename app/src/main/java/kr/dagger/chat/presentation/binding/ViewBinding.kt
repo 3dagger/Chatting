@@ -4,6 +4,7 @@ import android.net.Uri
 import android.widget.ImageView
 import androidx.databinding.BindingAdapter
 import androidx.recyclerview.widget.RecyclerView
+import androidx.swiperefreshlayout.widget.SwipeRefreshLayout
 import com.bumptech.glide.Glide
 import com.bumptech.glide.request.RequestOptions
 import kr.dagger.chat.R
@@ -45,6 +46,12 @@ object ViewBinding {
 		if (this.adapter == null) {
 			this.adapter = adapter
 		}
+	}
+
+	@JvmStatic
+	@BindingAdapter("bindSwipeRefresh")
+	fun SwipeRefreshLayout.bindSwipeRefresh(listener: SwipeRefreshLayout.OnRefreshListener) {
+		setOnRefreshListener(listener)
 	}
 
 }

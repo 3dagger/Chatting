@@ -5,6 +5,7 @@ import android.view.View
 import androidx.core.os.bundleOf
 import androidx.fragment.app.viewModels
 import androidx.navigation.fragment.findNavController
+import androidx.swiperefreshlayout.widget.SwipeRefreshLayout
 import dagger.hilt.android.AndroidEntryPoint
 import kr.dagger.chat.R
 import kr.dagger.chat.base.BaseFragment
@@ -12,6 +13,7 @@ import kr.dagger.chat.databinding.FragmentPeopleBinding
 import kr.dagger.chat.presentation.extension.showSnackBar
 import kr.dagger.chat.presentation.ui.message.create.SearchUserItemClickListener
 import kr.dagger.domain.model.User
+import timber.log.Timber
 
 @AndroidEntryPoint
 class PeopleFragment : BaseFragment<FragmentPeopleBinding>(R.layout.fragment_people), SearchUserItemClickListener {
@@ -25,7 +27,7 @@ class PeopleFragment : BaseFragment<FragmentPeopleBinding>(R.layout.fragment_peo
 
 		binding.run {
 			lifecycleOwner = viewLifecycleOwner
-			fragment = this@PeopleFragment
+			fm = this@PeopleFragment
 			vm = viewModel
 		}
 
