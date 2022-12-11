@@ -10,20 +10,12 @@ open class BaseViewModel : ViewModel() {
 	val isProgress : LiveData<Boolean>
 		get() = _isProgress
 
-	private val _toastMessage = MutableLiveData<String>()
-	val toastMessage : LiveData<String>
-		get() = _toastMessage
-
 	private val _snackMessage = MutableLiveData<String>()
 	val snackMessage : LiveData<String>
 		get() = _snackMessage
 
 	fun setProgress(value: Boolean) {
 		_isProgress.value = value
-	}
-
-	fun setToast(value: String) {
-		_toastMessage.value = value
 	}
 
 	fun setSnack(value: String) {
