@@ -1,4 +1,10 @@
 package kr.dagger.chat.presentation.ui.connect
 
-class ConnectViewModel {
+import kr.dagger.chat.base.BaseViewModel
+import javax.inject.Inject
+
+class ConnectViewModel @Inject constructor(
+
+) : BaseViewModel() {
+
 }
