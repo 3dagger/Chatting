@@ -21,6 +21,7 @@ object Versions {
 		const val FragmentKtxVersion = "1.4.1"
 		const val NavigationVersion = "2.5.1"
 		const val Paging3Version = "3.1.1"
+		const val SwipeRefreshLayoutVersion = "1.1.0"
 	}
 
 	object Okhttp {

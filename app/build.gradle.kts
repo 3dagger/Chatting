@@ -59,6 +59,7 @@ dependencies {
     implementation(Dependencies.AndroidSupport.RecyclerView)
     implementation(Dependencies.AndroidSupport.ActivityKtx)
     implementation(Dependencies.AndroidSupport.FragmentKtx)
+    implementation(Dependencies.AndroidSupport.SwipeRefreshLayout)
     implementation(Dependencies.AndroidSupport.Navigation.FragmentKtx)
     implementation(Dependencies.AndroidSupport.Navigation.UiKtx)
     implementation(Dependencies.AndroidSupport.LifeCycle.ViewModelKtx)

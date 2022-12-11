@@ -18,6 +18,7 @@ object Dependencies {
 		const val RecyclerView = "androidx.recyclerview:recyclerview:${Versions.AndroidSupport.RecyclerViewVersion}"
 		const val ActivityKtx = "androidx.activity:activity-ktx:${Versions.AndroidSupport.ActivityKtxVersion}"
 		const val FragmentKtx = "androidx.fragment:fragment-ktx:${Versions.AndroidSupport.FragmentKtxVersion}"
+		const val SwipeRefreshLayout = "androidx.swiperefreshlayout:swiperefreshlayout:${Versions.AndroidSupport.SwipeRefreshLayoutVersion}"
 		const val Paging3 = "androidx.paging:paging-runtime:${Versions.AndroidSupport.Paging3Version}"
 
 		object Navigation {
