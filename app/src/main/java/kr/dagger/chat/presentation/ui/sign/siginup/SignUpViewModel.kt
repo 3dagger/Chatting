@@ -9,12 +9,16 @@ import kr.dagger.chat.base.BaseViewModel
 import kr.dagger.chat.base.SingleLiveEvent
 import kr.dagger.chat.presentation.ui.sign.SignRequired
 import kr.dagger.domain.model.Response
+import kr.dagger.domain.model.User
+import kr.dagger.domain.model.UserInfo
 import kr.dagger.domain.usecase.sign.SignUpEmailAndPasswordUseCase
+import kr.dagger.domain.usecase.sign.UpdateNewUserUseCase
 import javax.inject.Inject
 
 @HiltViewModel
 class SignUpViewModel @Inject constructor(
-	private val signUpEmailAndPasswordUseCase: SignUpEmailAndPasswordUseCase
+	private val signUpEmailAndPasswordUseCase: SignUpEmailAndPasswordUseCase,
+	private val updateNewUserUseCase: UpdateNewUserUseCase
 ) : BaseViewModel() {
 
 	var currentDisplayName = MutableLiveData<String>()
@@ -39,15 +43,45 @@ class SignUpViewModel @Inject constructor(
 						}
 						is Response.Success -> {
 							setProgress(false)
-							_moveSignIn.value = hashMapOf(
-								SignRequired.Email to currentEmailText.value!!,
-								SignRequired.Password to currentPasswordText.value!!
-							)
+							updateNewUser(response.data)
 						}
 						is Response.Error -> {
 							setProgress(false)
 							setSnack(response.errorMessage)
 						}
+					}
+				}
+			}
+		}
+	}
+
+	private fun updateNewUser(user: UserInfo) {
+		viewModelScope.launch {
+			updateNewUserUseCase.invoke(
+				User(
+					UserInfo(
+						id = user.id,
+						givenName = user.givenName,
+						displayName = user.displayName,
+						status = user.status,
+						profileImageUrl = user.profileImageUrl
+					)
+				)
+			).collect { response ->
+				when (response) {
+					is Response.Loading -> {
+						setProgress(true)
+					}
+					is Response.Success -> {
+						setProgress(false)
+						_moveSignIn.value = hashMapOf(
+							SignRequired.Email to currentEmailText.value!!,
+							SignRequired.Password to currentPasswordText.value!!
+						)
+					}
+					is Response.Error -> {
+						setProgress(false)
+						setSnack(response.errorMessage)
 					}
 				}
 			}

@@ -47,7 +47,7 @@
                     android:inputType="textWebEmailAddress"
                     android:lines="1"
                     android:padding="10dp"
-                    android:text="@={vm.currentEmailText}"
+                    android:text="@={vm.currentDisplayName}"
                     android:textColorHint="@color/hint" />
 
             </com.google.android.material.textfield.TextInputLayout>

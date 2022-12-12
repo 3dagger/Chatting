@@ -11,7 +11,6 @@ import kr.dagger.chat.base.SingleLiveEvent
 import kr.dagger.domain.model.Response
 import kr.dagger.domain.model.User
 import kr.dagger.domain.model.UserInfo
-import kr.dagger.domain.usecase.SaveMyUserIdUseCase
 import kr.dagger.domain.usecase.sign.SignInEmailAndPasswordUseCase
 import kr.dagger.domain.usecase.sign.SignInGoogleUseCase
 import kr.dagger.domain.usecase.sign.UpdateNewUserUseCase
@@ -21,8 +20,7 @@ import javax.inject.Inject
 class SignInViewModel @Inject constructor(
 	private val signInGoogleUseCase: SignInGoogleUseCase,
 	private val signInEmailAndPasswordUseCase: SignInEmailAndPasswordUseCase,
-	private val updateNewUserUseCase: UpdateNewUserUseCase,
-	private val saveMyUserIdUseCase: SaveMyUserIdUseCase
+	private val updateNewUserUseCase: UpdateNewUserUseCase
 ) : BaseViewModel() {
 
 	var currentEmailText = MutableLiveData<String>()
@@ -41,7 +39,6 @@ class SignInViewModel @Inject constructor(
 						setProgress(true)
 					}
 					is Response.Success -> {
-						saveMyUserIdUseCase.invoke(signInAccount.id ?: "")
 						setProgress(false)
 						updateNewUser(
 							User(
