@@ -8,7 +8,7 @@ import kr.dagger.domain.repository.FirebaseDatabaseRepository
 class GetAllUserUseCase(
 	private val repository: FirebaseDatabaseRepository
 ) {
-	suspend operator fun invoke() : Flow<Response<List<User>>> {
-		return repository.loadUsers()
+	suspend operator fun invoke(myUid: String) : Flow<Response<List<User>>> {
+		return repository.loadUsers(myUid)
 	}
 }

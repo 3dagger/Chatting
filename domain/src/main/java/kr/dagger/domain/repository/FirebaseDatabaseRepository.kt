@@ -10,7 +10,7 @@ interface FirebaseDatabaseRepository {
 
 	suspend fun searchUsers(targetName: String): Flow<Response<List<User>>>
 
-	suspend fun loadUsers(): Flow<Response<List<User>>>
+	suspend fun loadUsers(myUid: String): Flow<Response<List<User>>>
 
 	suspend fun loadChatList(): Flow<Response<List<Chat>>>
 

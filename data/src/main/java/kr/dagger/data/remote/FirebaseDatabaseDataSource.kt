@@ -11,7 +11,7 @@ interface FirebaseDatabaseDataSource {
 
 	suspend fun searchUsers(targetName: String): Flow<Response<List<UserEntity>>>
 
-	suspend fun loadUsers(): Flow<Response<List<UserEntity>>>
+	suspend fun loadUsers(myUid: String): Flow<Response<List<UserEntity>>>
 
 	suspend fun loadChatList(): Flow<Response<List<ChatEntity>>>
 

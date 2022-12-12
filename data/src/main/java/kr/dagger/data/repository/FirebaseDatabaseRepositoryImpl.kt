@@ -30,8 +30,8 @@ class FirebaseDatabaseRepositoryImpl(
 		}
 	}
 
-	override suspend fun loadUsers(): Flow<Response<List<User>>> {
-		return firebaseDatabaseDataSource.loadUsers().transform { response ->
+	override suspend fun loadUsers(myUid: String): Flow<Response<List<User>>> {
+		return firebaseDatabaseDataSource.loadUsers(myUid).transform { response ->
 			when (response) {
 				is Response.Loading -> {
 					emit(Response.Loading)

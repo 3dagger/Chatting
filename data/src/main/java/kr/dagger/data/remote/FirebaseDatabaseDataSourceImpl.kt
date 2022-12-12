@@ -11,7 +11,6 @@ import kr.dagger.data.entity.ChatEntity
 import kr.dagger.data.entity.UserEntity
 import kr.dagger.data.entity.UserInfoEntity
 import kr.dagger.domain.model.Response
-import timber.log.Timber
 import javax.inject.Inject
 
 class FirebaseDatabaseDataSourceImpl @Inject constructor(
@@ -38,14 +37,13 @@ class FirebaseDatabaseDataSourceImpl @Inject constructor(
 		}
 	}
 
-	override suspend fun loadUsers(): Flow<Response<List<UserEntity>>> = flow {
+	override suspend fun loadUsers(myUid: String): Flow<Response<List<UserEntity>>> = flow {
 		try {
 			emit(Response.Loading)
 			database.reference.child("users").get().await().children.mapNotNull { doc ->
 				doc.getValue(UserEntity::class.java)
 			}.run {
-				Timber.d("this :: $this")
-				emit(Response.Success(this))
+				emit(Response.Success(this.filterNot { it.info.id == myUid }))
 			}
 		} catch (e: Exception) {
 			emit(Response.Error(e.message ?: "요청에 실패하였습니다."))
