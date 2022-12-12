@@ -1,20 +1,29 @@
 package kr.dagger.chat.presentation.ui
 
 import android.os.Bundle
+import androidx.activity.viewModels
 import androidx.navigation.NavController
 import androidx.navigation.fragment.NavHostFragment
 import androidx.navigation.fragment.findNavController
 import androidx.navigation.ui.AppBarConfiguration
 import androidx.navigation.ui.setupWithNavController
+import com.google.firebase.auth.FirebaseAuth
 import dagger.hilt.android.AndroidEntryPoint
 import kr.dagger.chat.R
 import kr.dagger.chat.base.BaseActivity
 import kr.dagger.chat.databinding.ActivityMainBinding
+import kr.dagger.chat.presentation.MainViewModel
+import javax.inject.Inject
 
 @AndroidEntryPoint
 class MainActivity : BaseActivity<ActivityMainBinding>(R.layout.activity_main) {
 
 	private lateinit var navController: NavController
+
+	private val viewModel: MainViewModel by viewModels()
+
+	@Inject
+	lateinit var firebaseAuth: FirebaseAuth
 
 	override fun initView(savedInstanceState: Bundle?) {
 
@@ -25,13 +34,7 @@ class MainActivity : BaseActivity<ActivityMainBinding>(R.layout.activity_main) {
 
 		initNavHostFragment()
 		initBottomNav()
-
-//		setSupportActionBar(binding.toolbar)
-//		supportActionBar?.run {
-//			setDisplayShowTitleEnabled(false)
-//			setDisplayHomeAsUpEnabled(true)
-//			setHomeAsUpIndicator(R.drawable.ic_baseline_arrow_back_24)
-//		}
+		viewModel.saveUid()
 	}
 
 	private fun initNavHostFragment() {

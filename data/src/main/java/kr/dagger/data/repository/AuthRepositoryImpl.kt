@@ -31,8 +31,8 @@ class AuthRepositoryImpl @Inject constructor(
 					Response.Success(
 						UserInfo(
 							id = it.result.user?.uid ?: "",
-							givenName = it.result.user?.displayName ?: "",
-							displayName = it.result.user?.displayName ?: "No Name",
+							givenName = displayName,
+							displayName = displayName,
 							status = "Newbie",
 							profileImageUrl = ""
 						)
