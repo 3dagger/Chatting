@@ -37,21 +37,21 @@ class CreateMessageFragment : BaseFragment<FragmentCreateMessageBinding>(R.layou
 		binding.recyclerView.adapter = this.adapter
 		adapter.setSearchUserItemClickListener(this)
 
-		viewModel.getLoadAllUser().observe(viewLifecycleOwner) {
-			when (it) {
-				is Response.Loading -> {
-					binding.progressBar.visibility = View.VISIBLE
-				}
-				is Response.Success -> {
-					binding.progressBar.visibility = View.INVISIBLE
-					val submitListData = it.data.filter { it.info.id != viewModel.myUserId.value }
-					adapter.submitList(submitListData)
-				}
-				is Response.Error -> {
-					binding.progressBar.visibility = View.INVISIBLE
-				}
-			}
-		}
+//		viewModel.getLoadAllUser().observe(viewLifecycleOwner) {
+//			when (it) {
+//				is Response.Loading -> {
+//					binding.progressBar.visibility = View.VISIBLE
+//				}
+//				is Response.Success -> {
+//					binding.progressBar.visibility = View.INVISIBLE
+//					val submitListData = it.data.filter { it.info.id != viewModel.myUserId.value }
+//					adapter.submitList(submitListData)
+//				}
+//				is Response.Error -> {
+//					binding.progressBar.visibility = View.INVISIBLE
+//				}
+//			}
+//		}
 
 		viewModel.searchData.observe(viewLifecycleOwner) {
 			if (it.length >= 2) {

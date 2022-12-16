@@ -10,6 +10,7 @@ import dagger.hilt.android.AndroidEntryPoint
 import kr.dagger.chat.R
 import kr.dagger.chat.base.BaseActivity
 import kr.dagger.chat.databinding.ActivitySignInBinding
+import kr.dagger.chat.presentation.extension.deFocusAndHideKeyboard
 import kr.dagger.chat.presentation.extension.openActivity
 import kr.dagger.chat.presentation.extension.showSnackBar
 import kr.dagger.chat.presentation.ui.Constants.INTENT_SIGN_UP_RESULT
@@ -57,6 +58,10 @@ class SignInActivity : BaseActivity<ActivitySignInBinding>(R.layout.activity_sig
 	override fun subscribeObservers() {
 		viewModel.snackMessage.observe(this) {
 			showSnackBar(binding.root, it)
+		}
+
+		viewModel.hideKeyboard.observe(this) {
+			deFocusAndHideKeyboard(this)
 		}
 
 		viewModel.moveMain.observe(this) {

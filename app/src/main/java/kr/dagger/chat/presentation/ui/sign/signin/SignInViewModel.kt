@@ -27,11 +27,17 @@ class SignInViewModel @Inject constructor(
 
 	var currentPasswordText = MutableLiveData<String>()
 
-	private val _moveMain = SingleLiveEvent<Nothing>()
-	val moveMain : LiveData<Nothing>
+	private val _moveMain = SingleLiveEvent<Any>()
+	val moveMain : LiveData<Any>
 		get() = _moveMain
 
+	private val _hideKeyboard = SingleLiveEvent<Any>()
+	val hideKeyboard : LiveData<Any>
+		get() = _hideKeyboard
+
 	fun googleSignIn(signInAccount: GoogleSignInAccount) {
+		_hideKeyboard.call()
+
 		viewModelScope.launch {
 			signInGoogleUseCase.invoke(signInAccount.idToken ?: "").collect { response ->
 				when (response) {
@@ -62,6 +68,8 @@ class SignInViewModel @Inject constructor(
 	}
 
 	fun emailAndPasswordSignIn(email: String?, password: String?) {
+		_hideKeyboard.call()
+
 		viewModelScope.launch {
 			if (currentEmailText.value.isNullOrBlank() || currentPasswordText.value.isNullOrBlank()) {
 				setSnack("아이디 또는 비밀번호를 확인해주세요.")

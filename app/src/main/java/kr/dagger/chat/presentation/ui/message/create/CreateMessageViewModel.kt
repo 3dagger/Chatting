@@ -9,7 +9,6 @@ import kr.dagger.domain.usecase.GetAllUserUseCase
 import kr.dagger.domain.usecase.GetMyUserIdUseCase
 import kr.dagger.domain.usecase.SearchUserUseCase
 import kr.dagger.domain.usecase.UpdateNewChatUseCase
-import timber.log.Timber
 import javax.inject.Inject
 
 @HiltViewModel
@@ -33,11 +32,11 @@ class CreateMessageViewModel @Inject constructor(
 			}
 		}
 
-		viewModelScope.launch {
-			getAllUserUseCase.invoke().collect { response ->
-				Timber.d("response :: $response")
-			}
-		}
+//		viewModelScope.launch {
+//			getAllUserUseCase.invoke().collect { response ->
+//				Timber.d("response :: $response")
+//			}
+//		}
 	}
 
 	fun searchUsers(targetName: String) = liveData(Dispatchers.IO) {
@@ -46,11 +45,11 @@ class CreateMessageViewModel @Inject constructor(
 		}
 	}
 
-	fun getLoadAllUser() = liveData(Dispatchers.IO) {
-		getAllUserUseCase.invoke().collect { response ->
-			emit(response)
-		}
-	}
+//	fun getLoadAllUser() = liveData(Dispatchers.IO) {
+//		getAllUserUseCase.invoke().collect { response ->
+//			emit(response)
+//		}
+//	}
 
 	fun updateNewChat(chat: Chat) {
 		updateNewChatUseCase.updateNewChat(chat)

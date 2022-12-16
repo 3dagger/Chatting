@@ -16,12 +16,8 @@
             type="kr.dagger.chat.presentation.ui.mypage.MyPageFragment" />
 
         <variable
-            name="profileImageUrl"
-            type="android.net.Uri" />
-
-        <variable
-            name="userName"
-            type="String" />
+            name="vm"
+            type="kr.dagger.chat.presentation.ui.mypage.MyPageViewModel" />
     </data>
 
     <androidx.constraintlayout.widget.ConstraintLayout
@@ -43,10 +39,10 @@
             app:strokeWidth="2dp">
 
             <ImageView
+                app:bindImage="@{vm.profileUri}"
                 android:layout_width="120dp"
                 android:layout_height="120dp"
                 android:scaleType="centerCrop"
-                app:bindImage="@{profileImageUrl}"
                 tools:src="@tools:sample/avatars" />
 
         </com.google.android.material.card.MaterialCardView>
@@ -56,22 +52,22 @@
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:layout_marginTop="50dp"
-            android:text="@{userName}"
+            android:text="@{vm.userIfo.displayName}"
             android:textColor="@color/black"
             android:textSize="38sp"
             android:textStyle="bold"
             app:layout_constraintEnd_toEndOf="parent"
             app:layout_constraintStart_toStartOf="parent"
-            app:layout_constraintTop_toBottomOf="@id/material_card_view" />
+            app:layout_constraintTop_toBottomOf="@id/material_card_view"
+            tools:text="User Nick Name" />
 
         <Button
-            android:id="@+id/btn_logout"
-            android:layout_width="150dp"
+            android:id="@+id/btn_image_change"
+            android:layout_width="200dp"
             android:layout_height="wrap_content"
             android:layout_marginTop="50dp"
-            android:backgroundTint="#ff6262"
-            android:onClick="@{() -> fm.signOut()}"
-            android:text="@string/my_page_fragment_logout"
+            android:text="이미지 변경"
+            android:onClick="@{() -> fm.resultLauncher.launch(fm.selectImageIntent)}"
             android:textColor="@color/white"
             android:textSize="14sp"
             android:textStyle="bold"
@@ -79,12 +75,27 @@
             app:layout_constraintStart_toStartOf="parent"
             app:layout_constraintTop_toBottomOf="@id/txt_user_display_name" />
 
+        <Button
+            android:id="@+id/btn_logout"
+            android:layout_width="200dp"
+            android:layout_height="wrap_content"
+            android:layout_marginTop="10dp"
+            android:backgroundTint="#ff6262"
+            android:onClick="@{() -> vm.signOut()}"
+            android:text="@string/my_page_fragment_logout"
+            android:textColor="@color/white"
+            android:textSize="14sp"
+            android:textStyle="bold"
+            app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintTop_toBottomOf="@id/btn_image_change" />
+
         <ProgressBar
             android:id="@+id/progressBar"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:indeterminateTint="@color/main"
-            android:visibility="invisible"
+            android:visibility="@{vm.isProgress ? View.VISIBLE : View.INVISIBLE}"
             app:layout_constraintBottom_toBottomOf="parent"
             app:layout_constraintEnd_toEndOf="parent"
             app:layout_constraintStart_toStartOf="parent"
